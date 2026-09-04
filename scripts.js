@@ -1,10 +1,11 @@
+```js
 const SUPABASE_URL = "https://akmkoptopznnvhnlbfdd.supabase.co";
 const SUPABASE_KEY = "sb_publishable_-QaGxbzu9CzeShlSDNPGRg_MzEsZsi4";
 
 const thoughts = [
   {
-   date:"September 4, 2026"
-   text: " ok i just made a new repo for ts cuz the other one was pmoing and i didnt wanna bug fix so i copy and pasted the important stuff. but then i screwed over my entire js file cuz i accidentally put it in discord with markdown to copy paste and kept in the ''' things and had to redo ts AHHH"
+    date: "September 4, 2026",
+    text: "ok i just made a new repo for ts cuz the other one was pmoing and i didnt wanna bug fix so i copy and pasted the important stuff. but then i screwed over my entire js file cuz i accidentally put it in discord with markdown to copy paste and kept in the ''' things and had to redo ts AHHH"
   },
   {
     date: "September 4, 2026",
@@ -509,6 +510,7 @@ if (guestbookForm) {
       guestbookForm.reset();
 
       guestbookStatus.textContent = "Message added!";
+      guestbookStatus.className = "";
 
       loadGuestbook().catch((refreshError) => {
         console.error(
@@ -560,3 +562,4 @@ updateTaskbar();
 loadGuestbook().catch((error) => {
   console.error("Initial Guestbook load failed:", error);
 });
+```
