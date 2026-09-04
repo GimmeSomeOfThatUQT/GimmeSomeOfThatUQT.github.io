@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windows 94</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="desktop">
+    <div class="desktop-icon" data-window="trash-window">
+      <div class="icon">🗑️</div>
+      <span>Trash Can</span>
+    </div>
+    <div class="desktop-icon" data-window="guestbook-window">
+      <div class="icon">📖</div>
+      <span>Guestbook</span>
+    </div>
+    <div class="desktop-icon" data-window="badges-window">
+      <div class="icon">🏆</div>
+      <span>Badges</span>
+    </div>
+    <div class="desktop-icon" data-window="thoughts-window">
+      <div class="icon">💭</div>
+      <span>Thoughts</span>
+    </div>
+  </main>
+
+  <section class="window welcome-window" id="welcome-window">
+    <div class="title-bar">
+      <span>Welcome</span>
+      <button class="close-button" aria-label="Close Welcome window">×</button>
+    </div>
+    <div class="window-content welcome-content">
+      <div class="welcome-logo">
+        <div class="logo-grid">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="welcome-text">
+        <h1>Welcome to Windows 94!</h1>
+        <p>Welcome to the desktop of the future*</p>
+        <p>Explore the desktop, sign the Guestbook, collect badges, and see what else is hiding around here.</p>
+        <small>* The future as imagined in 1994.</small>
+      </div>
+    </div>
+    <div class="window-buttons">
+      <button class="win-button primary-button" id="welcome-ok">OK</button>
+    </div>
+  </section>
+
+  <section class="window app-window" id="trash-window">
+    <div class="title-bar">
+      <span>Trash Can</span>
+      <button class="close-button" aria-label="Close Trash Can">×</button>
+    </div>
+    <div class="window-content">
+      <div class="empty-trash">
+        <div class="big-icon">🗑️</div>
+        <p>The Trash Can is empty.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="window app-window guestbook-window" id="guestbook-window">
+    <div class="title-bar">
+      <span>Guestbook</span>
+      <button class="close-button" aria-label="Close Guestbook">×</button>
+    </div>
+    <div class="window-content">
+      <h2>📖 Guestbook</h2>
+      <p>Leave a message for the next person who visits!</p>
+      <form id="guestbook-form">
+        <label for="guest-name">Your name:</label>
+        <input id="guest-name" name="name" type="text" maxlength="30" required autocomplete="off">
+        <label for="guest-message">Your message:</label>
+        <textarea id="guest-message" name="message" maxlength="300" required placeholder="Hello from the internet!"></textarea>
+        <div class="guestbook-form-footer">
+          <button type="submit" class="win-button" id="sign-button">Sign Guestbook</button>
+          <span id="guestbook-status"></span>
+        </div>
+      </form>
+      <hr>
+      <div class="guestbook-messages">
+        <div class="guestbook-heading"><strong>Messages from visitors</strong></div>
+        <div id="messages-list">Loading messages...</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="window app-window" id="badges-window">
+    <div class="title-bar">
+      <span>Badges</span>
+      <button class="close-button" aria-label="Close Badges">×</button>
+    </div>
+    <div class="window-content">
+      <h2>My Badges</h2>
+      <div class="badges">
+        <div class="badge">🌐<span>Web Surfer</span></div>
+        <div class="badge">💾<span>Disk Explorer</span></div>
+        <div class="badge">⭐<span>Early Visitor</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="window app-window thoughts-window" id="thoughts-window">
+    <div class="title-bar">
+      <span>Thoughts</span>
+      <button class="close-button" aria-label="Close Thoughts">×</button>
+    </div>
+    <div class="window-content">
+      <h2>💭 Thoughts</h2>
+      <p class="thoughts-intro">A little corner of my mind on the internet.</p>
+      <div id="thoughts-list">Loading thoughts...</div>
+    </div>
+  </section>
+
+  <footer class="taskbar">
+    <button class="start-button" id="start-button">
+      <span class="windows-logo">▦</span>
+      Start
+    </button>
+    <div class="taskbar-items" id="taskbar-items"></div>
+    <div class="clock" id="clock">12:00 PM</div>
+  </footer>
+
+  <script src="scripts.js"></script>
+
+</body>
+</html>
