@@ -355,11 +355,8 @@ hr {
 
 .badges-window {
   width: 430px;
-
-  /* Starts to the right of the welcome window */
-  left: calc(50% + 30px);
+  left: max(10px, calc(50% + 250px));
   top: 80px;
-
   max-width: calc(100vw - 20px);
 }
 
