@@ -3,11 +3,11 @@ const SUPABASE_KEY = "sb_publishable_-QaGxbzu9CzeShlSDNPGRg_MzEsZsi4";
 
 const thoughts = [
   { 
-    date: "September 5, 2026"
+    date: "September 5, 2026",
     text: "astral blacksmith wont u give me a fix,. i promise i can keep it a secret. WATER. FIRE. wATER FIRE. WATER,. FUIRE. CLOUDS AND ICEEEEEEEE. i wanna add a music section nedt TBH."
   },
   {
-    date: "September 5, 2026"
+    date: "September 5, 2026",
     text: "so im editing this late again its already tmr which is weird because my edits yesterday were like late the 3rd so technically it was the 4th,,, and today is like late the 4th so technically the 5th but now my dates are shot so oh well."
   },
   {
