@@ -50,6 +50,11 @@ body {
   text-shadow: 1px 1px #000;
 }
 
+
+/* =========================
+   WINDOWS
+========================= */
+
 .window {
   position: absolute;
   background: #c0c0c0;
@@ -136,6 +141,7 @@ body {
 
 /* =========================
    WELCOME
+   Always centered
 ========================= */
 
 .welcome-window {
@@ -195,13 +201,11 @@ body {
 
 
 /* =========================
-   APP WINDOWS
+   GENERAL APP WINDOWS
 ========================= */
 
 .app-window {
   width: 330px;
-  left: 150px;
-  top: 80px;
   display: none;
 }
 
@@ -218,6 +222,11 @@ body {
 /* =========================
    TRASH
 ========================= */
+
+#trash-window {
+  left: 120px;
+  top: 100px;
+}
 
 .empty-trash {
   padding: 15px;
@@ -238,6 +247,8 @@ body {
   max-width: calc(100vw - 20px);
   max-height: calc(100vh - 45px);
   overflow: hidden;
+  left: 150px;
+  top: 80px;
 }
 
 .guestbook-window .window-content {
@@ -344,8 +355,11 @@ hr {
 
 .badges-window {
   width: 430px;
-  left: 110px;
-  top: 70px;
+
+  /* Starts to the right of the welcome window */
+  left: calc(50% + 30px);
+  top: 80px;
+
   max-width: calc(100vw - 20px);
 }
 
@@ -426,8 +440,10 @@ hr {
   max-width: calc(100vw - 20px);
   max-height: calc(100vh - 45px);
   overflow: hidden;
-  left: 200px;
-  top: 100px;
+
+  /* Starts below and to the left of Badges */
+  left: 150px;
+  top: 300px;
 }
 
 .thoughts-window .window-content {
@@ -582,12 +598,12 @@ hr {
 
   .badges-window {
     left: 10px;
-    top: 90px;
+    top: 180px;
   }
 
   .thoughts-window {
     left: 10px;
-    top: 70px;
+    top: 400px;
   }
 
   .taskbar-window {
