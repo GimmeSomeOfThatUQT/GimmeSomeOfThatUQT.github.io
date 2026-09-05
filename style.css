@@ -10,16 +10,11 @@ body {
 }
 
 body {
-  font-family: "MS Sans Serif", Tahoma, Arial, sans-serif;
-  font-size: 13px;
+  font-family: "MS Sans Serif", Tahoma, sans-serif;
+  font-size: 12px;
   overflow: hidden;
   background: #008080;
 }
-
-
-/* =========================
-   DESKTOP
-   ========================= */
 
 .desktop {
   position: fixed;
@@ -28,62 +23,188 @@ body {
   background: #008080;
 }
 
-.desktop-icons {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
-  width: 90px;
-}
-
 .desktop-icon {
   width: 80px;
-  min-height: 75px;
-  padding: 4px;
-  border: 0;
-  background: transparent;
-  color: white;
-  font-family: inherit;
-  font-size: 11px;
+  margin-bottom: 12px;
   text-align: center;
+  color: white;
   cursor: pointer;
+  user-select: none;
+}
+
+.desktop-icon .icon {
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
   text-shadow: 1px 1px #000;
 }
 
-.desktop-icon:hover {
-  background: rgba(0, 0, 128, 0.35);
-}
-
-.desktop-icon:focus {
-  outline: 1px dotted white;
-}
-
-.icon-image {
+.desktop-icon span {
   display: block;
-  margin-bottom: 5px;
-  font-size: 32px;
-  line-height: 35px;
+  padding: 1px 2px;
+  line-height: 14px;
+  text-shadow: 1px 1px #000;
 }
 
 
 /* =========================
    WINDOWS
-   ========================= */
+========================= */
 
 .window {
   position: absolute;
-  display: block;
-  min-width: 280px;
   background: #c0c0c0;
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-  border-right: 2px solid #000000;
-  border-bottom: 2px solid #000000;
+  border: 2px solid;
+  border-color: #fff #404040 #404040 #fff;
   box-shadow: 1px 1px 0 #000;
+  color: #000;
   z-index: 10;
 }
 
+.title-bar {
+  height: 20px;
+  margin: 2px 2px 0;
+  padding: 2px 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #000080;
+  color: white;
+  font-weight: bold;
+  user-select: none;
+  cursor: move;
+}
+
+.close-button {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #c0c0c0;
+  color: #000;
+  border: 2px solid;
+  border-color: #fff #404040 #404040 #fff;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 12px;
+  cursor: pointer;
+}
+
+.close-button:active {
+  border-color: #404040 #fff #fff #404040;
+}
+
+.window-content {
+  padding: 12px;
+}
+
+.window-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 0 10px 10px;
+}
+
+.win-button {
+  min-width: 72px;
+  height: 24px;
+  padding: 2px 10px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #fff #404040 #404040 #fff;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.win-button:active {
+  border-color: #404040 #fff #fff #404040;
+}
+
+.win-button:disabled {
+  color: #808080;
+  cursor: default;
+}
+
+.primary-button {
+  outline: 1px solid #000;
+  outline-offset: -4px;
+}
+
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome-window {
+  width: 430px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.welcome-content {
+  min-height: 175px;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.welcome-logo {
+  width: 80px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.logo-grid {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  transform: skewY(-8deg);
+}
+
+.logo-grid span {
+  background: #000080;
+  border: 1px solid #000;
+}
+
+.welcome-text {
+  flex: 1;
+}
+
+.welcome-text h1 {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+
+.welcome-text p {
+  margin: 8px 0;
+  line-height: 17px;
+}
+
+.welcome-text small {
+  display: block;
+  margin-top: 14px;
+  color: #444;
+}
+
+
+/* =========================
+   GENERAL APP WINDOWS
+========================= */
+
 .app-window {
+  width: 330px;
   display: none;
 }
 
@@ -91,176 +212,53 @@ body {
   display: block;
 }
 
-
-/* =========================
-   TITLE BAR
-   ========================= */
-
-.title-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 22px;
-  padding: 2px 3px 2px 5px;
-  background: #000080;
-  color: white;
-  font-weight: bold;
-  cursor: default;
-  user-select: none;
-}
-
-.title-bar span {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.close-button {
-  width: 18px;
-  height: 18px;
-  padding: 0;
-  border-top: 1px solid #ffffff;
-  border-left: 1px solid #ffffff;
-  border-right: 1px solid #000000;
-  border-bottom: 1px solid #000000;
-  background: #c0c0c0;
-  color: #000;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 14px;
-  cursor: pointer;
-}
-
-.close-button:active {
-  border-top: 1px solid #000000;
-  border-left: 1px solid #000000;
-  border-right: 1px solid #ffffff;
-  border-bottom: 1px solid #ffffff;
-}
-
-
-/* =========================
-   WINDOW CONTENT
-   ========================= */
-
-.window-content {
-  padding: 12px;
-  color: #000;
-  background: #c0c0c0;
-}
-
-.window-content h1,
-.window-content h2,
-.window-content h3,
-.window-content p {
+.app-window h2 {
   margin-top: 0;
-}
-
-.window-content h2 {
   font-size: 16px;
 }
 
 
 /* =========================
-   WINDOWS 98 BUTTONS
-   ========================= */
-
-.win-button {
-  display: inline-block;
-  min-width: 80px;
-  padding: 4px 12px;
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-  border-right: 2px solid #000000;
-  border-bottom: 2px solid #000000;
-  background: #c0c0c0;
-  color: #000;
-  font-family: inherit;
-  font-size: 12px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.win-button:hover {
-  background: #d0d0d0;
-}
-
-.win-button:active {
-  border-top: 2px solid #000000;
-  border-left: 2px solid #000000;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-}
-
-
-/* =========================
-   WELCOME
-   ========================= */
-
-.welcome-window {
-  width: 380px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 20;
-}
-
-.welcome-content {
-  text-align: center;
-  padding: 25px;
-}
-
-.welcome-content h1 {
-  margin-bottom: 15px;
-  font-size: 24px;
-}
-
-.welcome-content p {
-  margin-bottom: 10px;
-}
-
-
-/* =========================
-   RECYCLE BIN
-   ========================= */
+   TRASH
+========================= */
 
 #trash-window {
-  width: 320px;
-  left: 170px;
-  top: 80px;
-}
-
-.trash-content {
-  min-height: 180px;
+  left: 120px;
+  top: 100px;
 }
 
 .empty-trash {
-  padding: 30px;
+  padding: 15px;
   text-align: center;
 }
 
-.large-icon {
-  margin-bottom: 15px;
-  font-size: 48px;
+.big-icon {
+  font-size: 45px;
 }
 
 
 /* =========================
    GUESTBOOK
-   ========================= */
+========================= */
 
-#guestbook-window {
-  width: 430px;
-  left: 180px;
-  top: 120px;
+.guestbook-window {
+  width: 440px;
+  max-width: calc(100vw - 20px);
+  max-height: calc(100vh - 45px);
+  overflow: hidden;
+  left: 150px;
+  top: 80px;
+}
+
+.guestbook-window .window-content {
+  overflow-y: auto;
+  max-height: calc(100vh - 80px);
 }
 
 #guestbook-form {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
 }
 
 #guestbook-form label {
@@ -270,46 +268,62 @@ body {
 #guest-name,
 #guest-message {
   width: 100%;
-  padding: 4px;
-  border-top: 2px solid #808080;
-  border-left: 2px solid #808080;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-  background: #ffffff;
   font-family: inherit;
   font-size: 12px;
+  background: white;
+  border: 2px solid;
+  border-color: #404040 #fff #fff #404040;
+}
+
+#guest-name {
+  height: 22px;
+  padding: 2px 4px;
 }
 
 #guest-message {
+  height: 65px;
+  padding: 4px;
   resize: vertical;
 }
 
-#sign-button {
-  align-self: flex-start;
-  margin-top: 5px;
+.guestbook-form-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 3px;
 }
 
-#guestbook-messages {
-  max-height: 250px;
-  margin-top: 15px;
-  padding: 8px;
-  overflow-y: auto;
-  border-top: 2px solid #808080;
-  border-left: 2px solid #808080;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-  background: #ffffff;
+#guestbook-status {
+  color: #333;
+}
+
+#guestbook-status.error {
+  color: #800000;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #808080;
+  border-bottom: 1px solid #fff;
+  margin: 12px 0;
+}
+
+.guestbook-heading {
+  margin-bottom: 8px;
 }
 
 .guestbook-message {
-  margin-bottom: 10px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #808080;
+  padding: 7px;
+  margin-bottom: 8px;
+  background: #fff;
+  border: 1px solid #808080;
 }
 
-.guestbook-message:last-child {
-  margin-bottom: 0;
-  border-bottom: 0;
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 5px;
 }
 
 .message-name {
@@ -317,171 +331,237 @@ body {
 }
 
 .message-date {
-  color: #555;
+  color: #666;
   font-size: 10px;
 }
 
 .message-text {
-  margin-top: 4px;
+  line-height: 15px;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+
+.no-messages {
+  padding: 10px;
+  color: #555;
+  text-align: center;
 }
 
 
 /* =========================
    BADGES
-   ========================= */
+========================= */
 
-#badges-window {
-  width: 420px;
-  left: 50%;
+.badges-window {
+  width: 430px;
+  left: max(10px, calc(50% + 250px));
   top: 80px;
+  max-width: calc(100vw - 20px);
 }
 
-.badges-content {
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.badge {
+  width: 110px;
+  min-height: 85px;
+  padding: 8px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  border: 1px solid #808080;
+  background: #dfdfdf;
 }
 
-.badge-card {
-  padding: 15px;
-}
-
-.badge-image {
-  display: block;
+.badge img {
   max-width: 100%;
-  margin: 0 auto 15px;
-  image-rendering: pixelated;
+  max-height: 70px;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+.badge-embed {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid #808080;
+}
+
+.badge-embed strong {
+  display: block;
+  margin-bottom: 6px;
 }
 
 #badge-embed-code {
   width: 100%;
-  margin-bottom: 8px;
+  height: 70px;
+  display: block;
+  margin-bottom: 7px;
   padding: 5px;
   resize: vertical;
-  font-family: monospace;
-  font-size: 11px;
+  background: #fff;
+  color: #000;
+  border: 2px solid;
+  border-color: #404040 #fff #fff #404040;
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  line-height: 13px;
 }
 
-.copy-status {
-  min-height: 15px;
-  margin-top: 8px;
-  font-size: 11px;
+#copy-badge-status {
+  margin-left: 7px;
+  color: #333;
+}
+
+#copy-badge-status.copy-success {
+  color: #006600;
+}
+
+#copy-badge-status.error {
+  color: #800000;
 }
 
 
 /* =========================
    THOUGHTS
-   ========================= */
+========================= */
 
-#thoughts-window {
-  width: 400px;
+.thoughts-window {
+  width: 380px;
+  max-width: calc(100vw - 20px);
+  max-height: calc(100vh - 45px);
+  overflow: hidden;
   left: 150px;
   top: 300px;
 }
 
-#thoughts-list {
-  max-height: 350px;
+.thoughts-window .window-content {
   overflow-y: auto;
+  max-height: calc(100vh - 80px);
+}
+
+.thoughts-intro {
+  margin-top: -5px;
+  color: #444;
 }
 
 .thought {
-  margin-bottom: 12px;
   padding: 8px;
-  border-top: 1px solid #808080;
-  border-left: 1px solid #808080;
-  border-right: 1px solid #ffffff;
-  border-bottom: 1px solid #ffffff;
-  background: #eeeeee;
+  margin-bottom: 8px;
+  background: #fff;
+  border: 1px solid #808080;
 }
 
 .thought-date {
-  margin-bottom: 4px;
-  color: #555;
+  margin-bottom: 5px;
+  color: #666;
   font-size: 10px;
-  font-weight: bold;
 }
 
 .thought-text {
+  line-height: 16px;
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.no-thoughts {
+  padding: 10px;
+  color: #555;
+  text-align: center;
 }
 
 
 /* =========================
    MUSIC
-   ========================= */
+========================= */
 
-#music-window {
-  width: 400px;
-  left: 250px;
-  top: 160px;
+.music-window {
+  width: 380px;
+  max-width: calc(100vw - 20px);
+  left: 400px;
+  top: 300px;
 }
 
-.music-content {
-  text-align: center;
-}
-
-.music-info {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin: 20px 0;
+.music-player {
   padding: 12px;
-  text-align: left;
-  background: #ffffff;
-  border-top: 2px solid #808080;
-  border-left: 2px solid #808080;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
+  background: #fff;
+  border: 1px solid #808080;
+  box-shadow: inset 1px 1px #404040;
 }
 
-.music-icon {
-  font-size: 40px;
+.music-label {
+  margin-bottom: 12px;
+  color: #666;
+  font-size: 10px;
 }
 
-.music-info h3 {
+.music-title {
   margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
-.music-info p {
+.music-artist {
   margin-bottom: 3px;
+  font-size: 13px;
+}
+
+.music-album {
+  margin-bottom: 15px;
+  color: #555;
   font-size: 11px;
 }
 
 .music-link {
-  margin-top: 5px;
+  display: inline-block;
+  padding: 5px 8px;
+  background: #c0c0c0;
+  color: #000;
+  text-decoration: none;
+  border: 2px solid;
+  border-color: #fff #404040 #404040 #fff;
+}
+
+.music-link:active {
+  border-color: #404040 #fff #fff #404040;
 }
 
 
 /* =========================
    TASKBAR
-   ========================= */
+========================= */
 
 .taskbar {
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 100;
+  height: 28px;
   display: flex;
   align-items: center;
-  height: 28px;
   padding: 2px;
   background: #c0c0c0;
-  border-top: 2px solid #ffffff;
+  border-top: 2px solid #fff;
+  box-shadow: inset 0 1px #dfdfdf;
+  z-index: 100;
 }
 
 .start-button {
+  height: 24px;
+  min-width: 68px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 4px;
-  height: 23px;
-  padding: 2px 8px 2px 5px;
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-  border-right: 2px solid #000000;
-  border-bottom: 2px solid #000000;
+  padding: 2px 6px;
   background: #c0c0c0;
-  color: #000;
+  border: 2px solid;
+  border-color: #fff #404040 #404040 #fff;
   font-family: inherit;
   font-size: 12px;
   font-weight: bold;
@@ -489,119 +569,99 @@ body {
 }
 
 .start-button:active {
-  border-top: 2px solid #000000;
-  border-left: 2px solid #000000;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
+  border-color: #404040 #fff #fff #404040;
 }
 
 .windows-logo {
   font-size: 16px;
-  line-height: 12px;
+  line-height: 16px;
 }
 
 .taskbar-items {
-  display: flex;
   flex: 1;
+  display: flex;
+  align-items: center;
   gap: 3px;
-  margin-left: 5px;
+  margin-left: 4px;
   overflow: hidden;
 }
 
-.taskbar-item {
+.taskbar-window {
+  height: 24px;
   min-width: 100px;
-  max-width: 160px;
-  height: 22px;
+  max-width: 150px;
   padding: 2px 8px;
   overflow: hidden;
-  border-top: 2px solid #808080;
-  border-left: 2px solid #808080;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-  background: #c0c0c0;
-  color: #000;
-  font-family: inherit;
-  font-size: 11px;
-  text-align: left;
   white-space: nowrap;
   text-overflow: ellipsis;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #fff #404040 #404040 #fff;
+  font-family: inherit;
+  font-size: 12px;
+  text-align: left;
   cursor: pointer;
 }
 
-.taskbar-item.active {
-  border-top: 2px solid #000000;
-  border-left: 2px solid #000000;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-  background: #d0d0d0;
+.taskbar-window:active {
+  border-color: #404040 #fff #fff #404040;
 }
 
 .clock {
-  min-width: 75px;
   height: 22px;
-  padding: 4px 8px;
-  border-top: 2px solid #808080;
-  border-left: 2px solid #808080;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-  text-align: center;
-  font-size: 11px;
+  min-width: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+  color: #000;
 }
 
 
 /* =========================
    MOBILE
-   ========================= */
+========================= */
 
 @media (max-width: 600px) {
-
-  .desktop {
-    overflow: auto;
-  }
-
   .welcome-window {
-    width: calc(100% - 30px);
+    width: calc(100vw - 20px);
   }
 
-  #trash-window,
-  #guestbook-window,
-  #badges-window,
-  #thoughts-window,
-  #music-window {
-    width: calc(100% - 30px);
-    max-width: 430px;
+  .welcome-content {
+    gap: 8px;
   }
 
-  #trash-window {
-    left: 15px;
-    top: 80px;
+  .welcome-logo {
+    width: 55px;
   }
 
-  #guestbook-window {
-    left: 15px;
-    top: 100px;
+  .welcome-text h1 {
+    font-size: 15px;
   }
 
-  #badges-window {
-    left: 15px;
-    top: 120px;
+  .guestbook-window {
+    left: 10px;
+    top: 40px;
   }
 
-  #thoughts-window {
-    left: 15px;
-    top: 140px;
+  .badges-window {
+    left: 10px;
+    top: 180px;
   }
 
-  #music-window {
-    left: 15px;
-    top: 160px;
+  .thoughts-window {
+    left: 10px;
+    top: 400px;
   }
 
-  .taskbar-item {
-    min-width: 70px;
+  .music-window {
+    left: 10px;
+    top: 550px;
   }
 
-  .clock {
-    min-width: 65px;
+  .taskbar-window {
+    min-width: 80px;
   }
 }
