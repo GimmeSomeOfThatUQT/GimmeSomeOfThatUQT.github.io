@@ -1,4 +1,3 @@
-```js
 const SUPABASE_URL = "https://akmkoptopznnvhnlbfdd.supabase.co";
 const SUPABASE_KEY = "sb_publishable_-QaGxbzu9CzeShlSDNPGRg_MzEsZsi4";
 
@@ -562,4 +561,3 @@ updateTaskbar();
 loadGuestbook().catch((error) => {
   console.error("Initial Guestbook load failed:", error);
 });
-```
