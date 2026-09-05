@@ -35,10 +35,10 @@ const thoughts = [
 ========================= */
 
 const latestSong = {
-  title: "Song Title",
-  artist: "Artist Name",
-  album: "Album Name",
-  youtubeMusic: "https://music.youtube.com/"
+  title: "Uqt",
+  artist: "King Gizzard & the Lizard Wizard",
+  album: "Alien Metal",
+  youtubeMusic: "https://music.youtube.com/watch?v=MUx4plyc4Bg&si=HuDu_-cNsQfFlN1f"
 };
 
 
