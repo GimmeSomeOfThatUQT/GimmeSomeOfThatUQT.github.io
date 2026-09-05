@@ -1,58 +1,95 @@
+/* =========================
+   SUPABASE
+   ========================= */
+
 const SUPABASE_URL = "https://akmkoptopznnvhnlbfdd.supabase.co";
 const SUPABASE_KEY = "sb_publishable_-QaGxbzu9CzeShlSDNPGRg_MzEsZsi4";
 
+
+/* =========================
+   THOUGHTS
+   ========================= */
+
 const thoughts = [
   {
-    date: "September 5, 2026",
-    text: "astral blacksmith wont u give me a fix,. i promise i can keep it a secret. WATER. FIRE. wATER FIRE. WATER,. FUIRE. CLOUDS AND ICEEEEEEEE. i wanna add a music section nedt TBH."
+    date: "2025-01-01",
+    text: "Welcome to my website!"
   },
   {
-    date: "September 5, 2026",
-    text: "so im editing this late again its already tmr which is weird because my edits yesterday were like late the 3rd so technically it was the 4th,,, and today is like late the 4th so technically the 5th but now my dates are shot so oh well."
+    date: "2025-01-05",
+    text: "I really like making little websites."
   },
   {
-    date: "September 4, 2026",
-    text: "ok i just made a new repo for ts cuz the other one was pmoing and i didnt wanna bug fix so i copy and pasted the important stuff. but then i screwed over my entire js file cuz i accidentally put it in discord with markdown to copy paste and kept in the ''' things and had to redo ts AHHH"
+    date: "2025-01-12",
+    text: "The internet felt so much more fun when everyone had their own little corner."
   },
   {
-    date: "September 4, 2026",
-    text: "its liek 2 am but i lowk can't sleep so im just making this still. follow the twt while ur at it @pan_psych and if ur reading this and can draw PLEASE lemme get a commision dm me rn."
+    date: "2025-02-01",
+    text: "I should probably update this more often."
   },
   {
-    date: "September 4, 2026",
-    text: "hey guys i hope u like my website i just made it today. i was planning on having it be liek my old site but i couldnt find motan to steal from and lost access to my old github... so here we are. new site. new me. feeling good"
-  },
-  {
-    date: "September 4, 2026",
-    text: "welcum to the site"
+    date: "2025-02-15",
+    text: "Thanks for visiting!"
   }
 ];
 
 
 /* =========================
-   MUSIC
-   CHANGE THESE WHENEVER
-========================= */
+   CURRENT MUSIC
+   ========================= */
 
 const latestSong = {
   title: "Uqt",
   artist: "King Gizzard & the Lizard Wizard",
   album: "Alien Metal",
-  youtubeMusic: "https://music.youtube.com/watch?v=MUx4plyc4Bg&si=HuDu_-cNsQfFlN1f"
+  youtubeMusic:
+    "https://music.youtube.com/watch?v=MUx4plyc4Bg&si=HuDu_-cNsQfFlN1f"
 };
 
 
 /* =========================
+   WINDOW STATE
+   ========================= */
+
+let highestZ = 20;
+
+
+/* =========================
+   DOM ELEMENTS
+   ========================= */
+
+const welcomeWindow = document.getElementById("welcome-window");
+const welcomeOk = document.getElementById("welcome-ok");
+
+const desktopIcons = document.querySelectorAll(".desktop-icon");
+const appWindows = document.querySelectorAll(".app-window");
+const closeButtons = document.querySelectorAll(".close-button");
+
+const taskbarItems = document.getElementById("taskbar-items");
+const clock = document.getElementById("clock");
+
+const thoughtsList = document.getElementById("thoughts-list");
+
+const musicTitle = document.getElementById("music-title");
+const musicArtist = document.getElementById("music-artist");
+const musicAlbum = document.getElementById("music-album");
+const musicLink = document.getElementById("music-link");
+
+const guestbookForm = document.getElementById("guestbook-form");
+const guestName = document.getElementById("guest-name");
+const guestMessage = document.getElementById("guest-message");
+const guestbookMessages = document.getElementById("guestbook-messages");
+
+const badgeEmbedCode = document.getElementById("badge-embed-code");
+const copyBadgeButton = document.getElementById("copy-badge-button");
+const copyStatus = document.getElementById("copy-status");
+
+
+/* =========================
    CLOCK
-========================= */
+   ========================= */
 
 function updateClock() {
-  const clock = document.getElementById("clock");
-
-  if (!clock) {
-    return;
-  }
-
   const now = new Date();
 
   clock.textContent = now.toLocaleTimeString([], {
@@ -66,10 +103,8 @@ setInterval(updateClock, 1000);
 
 
 /* =========================
-   WINDOW MANAGEMENT
-========================= */
-
-let highestZ = 20;
+   WINDOW FOCUS
+   ========================= */
 
 function bringToFront(windowElement) {
   if (!windowElement) {
@@ -82,96 +117,65 @@ function bringToFront(windowElement) {
 
 
 /* =========================
-   DOM ELEMENTS
-========================= */
-
-const taskbarItems = document.getElementById("taskbar-items");
-const messagesList = document.getElementById("messages-list");
-const guestbookForm = document.getElementById("guestbook-form");
-const guestbookStatus = document.getElementById("guestbook-status");
-const signButton = document.getElementById("sign-button");
-
-const welcomeWindow = document.getElementById("welcome-window");
-const welcomeOk = document.getElementById("welcome-ok");
-
-const thoughtsList = document.getElementById("thoughts-list");
-const thoughtsWindow = document.getElementById("thoughts-window");
-
-const badgesWindow = document.getElementById("badges-window");
-const copyBadgeButton = document.getElementById("copy-badge-button");
-const badgeEmbedCode = document.getElementById("badge-embed-code");
-const copyBadgeStatus = document.getElementById("copy-badge-status");
-
-const musicWindow = document.getElementById("music-window");
-const musicTitle = document.getElementById("music-title");
-const musicArtist = document.getElementById("music-artist");
-const musicAlbum = document.getElementById("music-album");
-const musicLink = document.getElementById("music-link");
-
-
-/* =========================
    TASKBAR
-========================= */
+   ========================= */
 
 function updateTaskbar() {
-  if (!taskbarItems) {
-    return;
-  }
-
   taskbarItems.innerHTML = "";
 
-  document.querySelectorAll(".app-window").forEach((windowElement) => {
+  appWindows.forEach((windowElement) => {
     if (!windowElement.classList.contains("active")) {
       return;
     }
 
-    const title =
-      windowElement.querySelector(".title-bar span")?.textContent || "Window";
+    const titleBarText =
+      windowElement.querySelector(".title-bar span")?.textContent ||
+      "Window";
 
-    const taskbarButton = document.createElement("button");
+    const button = document.createElement("button");
 
-    taskbarButton.className = "taskbar-window";
-    taskbarButton.type = "button";
-    taskbarButton.textContent = title;
+    button.type = "button";
+    button.className = "taskbar-item";
+    button.textContent = titleBarText;
 
-    taskbarButton.addEventListener("click", () => {
-      windowElement.classList.add("active");
+    button.addEventListener("click", () => {
       bringToFront(windowElement);
     });
 
-    taskbarItems.appendChild(taskbarButton);
+    taskbarItems.appendChild(button);
   });
 }
 
 
 /* =========================
    WELCOME WINDOW
-========================= */
+   ========================= */
 
-if (welcomeOk && welcomeWindow) {
-  welcomeOk.addEventListener("click", () => {
-    welcomeWindow.style.display = "none";
-  });
-}
+welcomeOk.addEventListener("click", () => {
+  welcomeWindow.style.display = "none";
+});
+
+welcomeWindow.addEventListener("mousedown", () => {
+  bringToFront(welcomeWindow);
+});
 
 
 /* =========================
    DESKTOP ICONS
-========================= */
-
-const desktopIcons = document.querySelectorAll(".desktop-icon");
+   ========================= */
 
 desktopIcons.forEach((icon) => {
   icon.addEventListener("click", () => {
     const windowId = icon.dataset.window;
-    const appWindow = document.getElementById(windowId);
+    const windowElement = document.getElementById(windowId);
 
-    if (!appWindow) {
+    if (!windowElement) {
       return;
     }
 
-    appWindow.classList.add("active");
-    bringToFront(appWindow);
+    windowElement.classList.add("active");
+    bringToFront(windowElement);
+
     updateTaskbar();
 
     if (windowId === "guestbook-window") {
@@ -181,18 +185,22 @@ desktopIcons.forEach((icon) => {
     if (windowId === "thoughts-window") {
       renderThoughts();
     }
+
+    if (windowId === "music-window") {
+      renderMusic();
+    }
   });
 });
 
 
 /* =========================
    CLOSE BUTTONS
-========================= */
-
-const closeButtons = document.querySelectorAll(".close-button");
+   ========================= */
 
 closeButtons.forEach((button) => {
-  button.addEventListener("click", () => {
+  button.addEventListener("click", (event) => {
+    event.stopPropagation();
+
     const windowElement = button.closest(".window");
 
     if (!windowElement) {
@@ -201,18 +209,18 @@ closeButtons.forEach((button) => {
 
     if (windowElement.id === "welcome-window") {
       windowElement.style.display = "none";
-      return;
+    } else {
+      windowElement.classList.remove("active");
     }
 
-    windowElement.classList.remove("active");
     updateTaskbar();
   });
 });
 
 
 /* =========================
-   WINDOW FOCUS
-========================= */
+   WINDOW CLICK / FOCUS
+   ========================= */
 
 document.querySelectorAll(".window").forEach((windowElement) => {
   windowElement.addEventListener("mousedown", () => {
@@ -223,18 +231,14 @@ document.querySelectorAll(".window").forEach((windowElement) => {
 
 /* =========================
    WINDOW DRAGGING
-========================= */
+   ========================= */
 
-document.querySelectorAll(".window").forEach((windowElement) => {
-  const titleBar = windowElement.querySelector(".title-bar");
-
-  if (!titleBar) {
-    return;
-  }
-
+document.querySelectorAll(".window .title-bar").forEach((titleBar) => {
   let isDragging = false;
   let offsetX = 0;
   let offsetY = 0;
+
+  const windowElement = titleBar.closest(".window");
 
   titleBar.addEventListener("mousedown", (event) => {
     if (event.target.closest(".close-button")) {
@@ -242,16 +246,13 @@ document.querySelectorAll(".window").forEach((windowElement) => {
     }
 
     isDragging = true;
+
     bringToFront(windowElement);
 
     const rect = windowElement.getBoundingClientRect();
 
     offsetX = event.clientX - rect.left;
     offsetY = event.clientY - rect.top;
-
-    windowElement.style.transform = "none";
-    windowElement.style.left = `${rect.left}px`;
-    windowElement.style.top = `${rect.top}px`;
 
     event.preventDefault();
   });
@@ -261,17 +262,13 @@ document.querySelectorAll(".window").forEach((windowElement) => {
       return;
     }
 
-    let newLeft = event.clientX - offsetX;
-    let newTop = event.clientY - offsetY;
-
-    const maxLeft = window.innerWidth - 40;
-    const maxTop = window.innerHeight - 45;
-
-    newLeft = Math.max(0, Math.min(newLeft, maxLeft));
-    newTop = Math.max(0, Math.min(newTop, maxTop));
+    const newLeft = event.clientX - offsetX;
+    const newTop = event.clientY - offsetY;
 
     windowElement.style.left = `${newLeft}px`;
     windowElement.style.top = `${newTop}px`;
+
+    windowElement.style.transform = "none";
   });
 
   document.addEventListener("mouseup", () => {
@@ -282,7 +279,7 @@ document.querySelectorAll(".window").forEach((windowElement) => {
 
 /* =========================
    THOUGHTS
-========================= */
+   ========================= */
 
 function renderThoughts() {
   if (!thoughtsList) {
@@ -291,19 +288,9 @@ function renderThoughts() {
 
   thoughtsList.innerHTML = "";
 
-  if (!thoughts || thoughts.length === 0) {
-    const emptyMessage = document.createElement("div");
-
-    emptyMessage.className = "no-thoughts";
-    emptyMessage.textContent = "No thoughts here yet.";
-
-    thoughtsList.appendChild(emptyMessage);
-
-    return;
-  }
-
   thoughts.forEach((thought) => {
-    const thoughtElement = document.createElement("div");
+    const thoughtElement = document.createElement("article");
+
     thoughtElement.className = "thought";
 
     const dateElement = document.createElement("div");
@@ -324,7 +311,7 @@ function renderThoughts() {
 
 /* =========================
    MUSIC
-========================= */
+   ========================= */
 
 function renderMusic() {
   if (!musicTitle || !musicArtist || !musicAlbum || !musicLink) {
@@ -332,55 +319,81 @@ function renderMusic() {
   }
 
   musicTitle.textContent = latestSong.title;
-  musicArtist.textContent = latestSong.artist;
-  musicAlbum.textContent = latestSong.album;
+  musicArtist.textContent = `Artist: ${latestSong.artist}`;
+  musicAlbum.textContent = `Album: ${latestSong.album}`;
   musicLink.href = latestSong.youtubeMusic;
 }
 
-renderMusic();
-
 
 /* =========================
-   BADGE EMBED COPY
-========================= */
+   BADGE EMBED
+   ========================= */
 
-if (copyBadgeButton && badgeEmbedCode && copyBadgeStatus) {
-  copyBadgeButton.addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(badgeEmbedCode.value);
+function setupBadgeEmbed() {
+  if (!badgeEmbedCode) {
+    return;
+  }
 
-      copyBadgeStatus.textContent = "Copied!";
-      copyBadgeStatus.className = "copy-success";
+  const badgeImage =
+    document.querySelector(".badge-image");
 
-      setTimeout(() => {
-        copyBadgeStatus.textContent = "";
-      }, 2000);
+  if (!badgeImage) {
+    return;
+  }
 
-    } catch (error) {
-      console.error("Could not copy badge embed:", error);
+  const imageUrl = badgeImage.src;
 
-      badgeEmbedCode.focus();
-      badgeEmbedCode.select();
-
-      copyBadgeStatus.textContent =
-        "Copy failed — press Ctrl+C.";
-      copyBadgeStatus.className = "error";
-    }
-  });
+  badgeEmbedCode.value =
+    `<a href="https://tornadocookie.neocities.org" target="_blank" rel="noopener noreferrer">` +
+    `<img src="${imageUrl}" alt="My web badge">` +
+    `</a>`;
 }
 
+setupBadgeEmbed();
+
 
 /* =========================
-   SUPABASE
-========================= */
+   COPY BADGE
+   ========================= */
+
+copyBadgeButton.addEventListener("click", async () => {
+  if (!badgeEmbedCode) {
+    return;
+  }
+
+  const text = badgeEmbedCode.value;
+
+  try {
+    await navigator.clipboard.writeText(text);
+
+    copyStatus.textContent = "Copied!";
+  } catch (error) {
+    badgeEmbedCode.focus();
+    badgeEmbedCode.select();
+
+    copyStatus.textContent =
+      "Select the text and press Ctrl+C to copy.";
+  }
+
+  setTimeout(() => {
+    copyStatus.textContent = "";
+  }, 3000);
+});
+
+
+/* =========================
+   SUPABASE REQUEST
+   ========================= */
 
 async function supabaseRequest(endpoint, options = {}) {
   const response = await fetch(
     `${SUPABASE_URL}/rest/v1/${endpoint}`,
     {
       ...options,
+
       headers: {
         apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
         "Content-Type": "application/json",
         ...(options.headers || {})
       }
@@ -388,112 +401,108 @@ async function supabaseRequest(endpoint, options = {}) {
   );
 
   if (!response.ok) {
-    let errorMessage = "Something went wrong.";
+    const errorText = await response.text();
 
-    try {
-      const error = await response.json();
-
-      errorMessage =
-        error.message ||
-        error.details ||
-        error.hint ||
-        error.code ||
-        errorMessage;
-    } catch {
-      errorMessage = `Request failed with status ${response.status}.`;
-    }
-
-    throw new Error(errorMessage);
+    throw new Error(
+      `Supabase request failed: ${response.status} ${errorText}`
+    );
   }
 
   if (response.status === 204) {
     return null;
   }
 
-  const text = await response.text();
-
-  if (!text) {
-    return null;
-  }
-
-  return JSON.parse(text);
+  return response.json();
 }
 
 
 /* =========================
-   GUESTBOOK
-========================= */
+   LOAD GUESTBOOK
+   ========================= */
 
 async function loadGuestbook() {
-  if (!messagesList) {
+  if (!guestbookMessages) {
     return;
   }
 
-  messagesList.textContent = "Loading messages...";
+  guestbookMessages.innerHTML =
+    "<p>Loading messages...</p>";
 
   try {
     const messages = await supabaseRequest(
-      "guestbook?select=id,name,message,created_at&order=created_at.desc"
+      "guestbook?select=*&order=created_at.desc"
     );
 
-    renderMessages(messages || []);
+    renderMessages(messages);
   } catch (error) {
-    console.error("Guestbook loading error:", error);
+    console.error("Guestbook loading failed:", error);
 
-    messagesList.textContent =
-      "Unable to load Guestbook messages.";
+    guestbookMessages.innerHTML =
+      "<p>Could not load guestbook messages.</p>";
   }
 }
 
 
-function renderMessages(messages) {
-  if (!messagesList) {
-    return;
-  }
+/* =========================
+   RENDER GUESTBOOK
+   ========================= */
 
-  messagesList.innerHTML = "";
+function renderMessages(messages) {
+  guestbookMessages.innerHTML = "";
 
   if (!messages || messages.length === 0) {
-    const emptyMessage = document.createElement("div");
-
-    emptyMessage.className = "no-messages";
-    emptyMessage.textContent =
-      "No messages yet. Be the first to sign the Guestbook!";
-
-    messagesList.appendChild(emptyMessage);
+    guestbookMessages.innerHTML =
+      "<p>No messages yet. Be the first!</p>";
 
     return;
   }
 
   messages.forEach((message) => {
-    const messageElement = document.createElement("div");
-    messageElement.className = "guestbook-message";
+    const messageElement =
+      document.createElement("article");
 
-    const header = document.createElement("div");
-    header.className = "message-header";
+    messageElement.className =
+      "guestbook-message";
 
-    const name = document.createElement("span");
-    name.className = "message-name";
-    name.textContent = message.name || "Anonymous";
+    const nameElement =
+      document.createElement("div");
 
-    const date = document.createElement("span");
-    date.className = "message-date";
-    date.textContent = formatDate(message.created_at);
+    nameElement.className =
+      "message-name";
 
-    const text = document.createElement("div");
-    text.className = "message-text";
-    text.textContent = message.message || "";
+    nameElement.textContent =
+      message.name || "Anonymous";
 
-    header.appendChild(name);
-    header.appendChild(date);
+    const dateElement =
+      document.createElement("div");
 
-    messageElement.appendChild(header);
-    messageElement.appendChild(text);
+    dateElement.className =
+      "message-date";
 
-    messagesList.appendChild(messageElement);
+    dateElement.textContent =
+      formatDate(message.created_at);
+
+    const textElement =
+      document.createElement("div");
+
+    textElement.className =
+      "message-text";
+
+    textElement.textContent =
+      message.message || "";
+
+    messageElement.appendChild(nameElement);
+    messageElement.appendChild(dateElement);
+    messageElement.appendChild(textElement);
+
+    guestbookMessages.appendChild(messageElement);
   });
 }
 
+
+/* =========================
+   FORMAT DATE
+   ========================= */
 
 function formatDate(dateString) {
   if (!dateString) {
@@ -506,745 +515,115 @@ function formatDate(dateString) {
     return "";
   }
 
-  return date.toLocaleString([], {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit"
-  });
+  return date.toLocaleString();
 }
 
 
 /* =========================
    GUESTBOOK FORM
-========================= */
+   ========================= */
 
-if (guestbookForm) {
-  guestbookForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
+guestbookForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
 
-    if (!guestbookStatus || !signButton) {
-      return;
-    }
+  const name = guestName.value.trim();
+  const message = guestMessage.value.trim();
 
-    guestbookStatus.textContent = "";
-    guestbookStatus.className = "";
-
-    const formData = new FormData(guestbookForm);
-
-    const name = String(formData.get("name") || "").trim();
-    const message = String(formData.get("message") || "").trim();
-
-    if (!name) {
-      guestbookStatus.textContent = "Please enter your name.";
-      guestbookStatus.className = "error";
-      return;
-    }
-
-    if (!message) {
-      guestbookStatus.textContent = "Please enter a message.";
-      guestbookStatus.className = "error";
-      return;
-    }
-
-    if (name.length > 30) {
-      guestbookStatus.textContent =
-        "Name must be 30 characters or less.";
-      guestbookStatus.className = "error";
-      return;
-    }
-
-    if (message.length > 300) {
-      guestbookStatus.textContent =
-        "Message must be 300 characters or less.";
-      guestbookStatus.className = "error";
-      return;
-    }
-
-    signButton.disabled = true;
-    guestbookStatus.textContent = "Signing...";
-
-    try {
-      await supabaseRequest("guestbook", {
-        method: "POST",
-
-        headers: {
-          Prefer: "return=minimal"
-        },
-
-        body: JSON.stringify({
-          name,
-          message
-        })
-      });
-
-      guestbookForm.reset();
-
-      guestbookStatus.textContent = "Message added!";
-      guestbookStatus.className = "";
-
-      loadGuestbook().catch((refreshError) => {
-        console.error(
-          "Message saved, but refresh failed:",
-          refreshError
-        );
-      });
-
-      setTimeout(() => {
-        guestbookStatus.textContent = "";
-      }, 2500);
-
-    } catch (error) {
-      console.error("Could not sign guestbook:", error);
-
-      guestbookStatus.textContent =
-        error.message || "Could not sign Guestbook.";
-
-      guestbookStatus.className = "error";
-
-    } finally {
-      signButton.disabled = false;
-    }
-  });
-}
-
-
-/* =========================
-   INITIALIZE
-========================= */
-
-if (welcomeWindow) {
-  welcomeWindow.style.display = "block";
-  bringToFront(welcomeWindow);
-}
-
-if (badgesWindow) {
-  badgesWindow.classList.add("active");
-  bringToFront(badgesWindow);
-}
-
-if (thoughtsWindow) {
-  thoughtsWindow.classList.add("active");
-  bringToFront(thoughtsWindow);
-  renderThoughts();
-}
-
-updateTaskbar();
-
-
-/*
-  Load the Guestbook in the background.
-*/
-
-loadGuestbook().catch((error) => {
-  console.error("Initial Guestbook load failed:", error);
-});const SUPABASE_URL = "https://akmkoptopznnvhnlbfdd.supabase.co";
-const SUPABASE_KEY = "sb_publishable_-QaGxbzu9CzeShlSDNPGRg_MzEsZsi4";
-
-const thoughts = [
-  { 
-    date: "September 5, 2026",
-    text: "astral blacksmith wont u give me a fix,. i promise i can keep it a secret. WATER. FIRE. wATER FIRE. WATER,. FUIRE. CLOUDS AND ICEEEEEEEE. i wanna add a music section nedt TBH."
-  },
-  {
-    date: "September 5, 2026",
-    text: "so im editing this late again its already tmr which is weird because my edits yesterday were like late the 3rd so technically it was the 4th,,, and today is like late the 4th so technically the 5th but now my dates are shot so oh well."
-  },
-  {
-    date: "September 4, 2026",
-    text: "ok i just made a new repo for ts cuz the other one was pmoing and i didnt wanna bug fix so i copy and pasted the important stuff. but then i screwed over my entire js file cuz i accidentally put it in discord with markdown to copy paste and kept in the ''' things and had to redo ts AHHH"
-  },
-  {
-    date: "September 4, 2026",
-    text: "its liek 2 am but i lowk can't sleep so im just making this still. follow the twt while ur at it @pan_psych and if ur reading this and can draw PLEASE lemme get a commision dm me rn."
-  },
-  {
-    date: "September 4, 2026",
-    text: "hey guys i hope u like my website i just made it today. i was planning on having it be liek my old site but i couldnt find motan to steal from and lost access to my old github... so here we are. new site. new me. feeling good"
-  },
-  {
-    date: "September 4, 2026",
-    text: "welcum to the site"
-  }
-];
-
-
-/* =========================
-   CLOCK
-========================= */
-
-function updateClock() {
-  const clock = document.getElementById("clock");
-
-  if (!clock) {
+  if (!name || !message) {
+    alert("Please enter both your name and a message.");
     return;
   }
 
-  const now = new Date();
-
-  clock.textContent = now.toLocaleTimeString([], {
-    hour: "numeric",
-    minute: "2-digit"
-  });
-}
-
-updateClock();
-setInterval(updateClock, 1000);
-
-
-/* =========================
-   WINDOW MANAGEMENT
-========================= */
-
-let highestZ = 20;
-
-function bringToFront(windowElement) {
-  if (!windowElement) {
+  if (name.length > 40) {
+    alert("Your name is too long.");
     return;
   }
 
-  highestZ += 1;
-  windowElement.style.zIndex = highestZ;
-}
-
-
-/* =========================
-   DOM ELEMENTS
-========================= */
-
-const taskbarItems = document.getElementById("taskbar-items");
-const messagesList = document.getElementById("messages-list");
-const guestbookForm = document.getElementById("guestbook-form");
-const guestbookStatus = document.getElementById("guestbook-status");
-const signButton = document.getElementById("sign-button");
-
-const welcomeWindow = document.getElementById("welcome-window");
-const welcomeOk = document.getElementById("welcome-ok");
-
-const thoughtsList = document.getElementById("thoughts-list");
-const thoughtsWindow = document.getElementById("thoughts-window");
-
-const badgesWindow = document.getElementById("badges-window");
-const copyBadgeButton = document.getElementById("copy-badge-button");
-const badgeEmbedCode = document.getElementById("badge-embed-code");
-const copyBadgeStatus = document.getElementById("copy-badge-status");
-
-
-/* =========================
-   TASKBAR
-========================= */
-
-function updateTaskbar() {
-  if (!taskbarItems) {
+  if (message.length > 300) {
+    alert("Your message is too long.");
     return;
   }
 
-  taskbarItems.innerHTML = "";
+  const signButton =
+    document.getElementById("sign-button");
 
-  document.querySelectorAll(".app-window").forEach((windowElement) => {
-    if (!windowElement.classList.contains("active")) {
-      return;
-    }
+  signButton.disabled = true;
+  signButton.textContent = "Signing...";
 
-    const title =
-      windowElement.querySelector(".title-bar span")?.textContent || "Window";
+  try {
+    await supabaseRequest("guestbook", {
+      method: "POST",
 
-    const taskbarButton = document.createElement("button");
+      headers: {
+        Prefer: "return=minimal"
+      },
 
-    taskbarButton.className = "taskbar-window";
-    taskbarButton.type = "button";
-    taskbarButton.textContent = title;
-
-    taskbarButton.addEventListener("click", () => {
-      windowElement.classList.add("active");
-      bringToFront(windowElement);
+      body: JSON.stringify({
+        name,
+        message
+      })
     });
 
-    taskbarItems.appendChild(taskbarButton);
-  });
-}
+    guestName.value = "";
+    guestMessage.value = "";
 
+    await loadGuestbook();
 
-/* =========================
-   WELCOME WINDOW
-========================= */
+  } catch (error) {
+    console.error("Guestbook submission failed:", error);
 
-if (welcomeOk && welcomeWindow) {
-  welcomeOk.addEventListener("click", () => {
-    welcomeWindow.style.display = "none";
-  });
-}
-
-
-/* =========================
-   DESKTOP ICONS
-========================= */
-
-const desktopIcons = document.querySelectorAll(".desktop-icon");
-
-desktopIcons.forEach((icon) => {
-  icon.addEventListener("click", () => {
-    const windowId = icon.dataset.window;
-    const appWindow = document.getElementById(windowId);
-
-    if (!appWindow) {
-      return;
-    }
-
-    appWindow.classList.add("active");
-    bringToFront(appWindow);
-    updateTaskbar();
-
-    if (windowId === "guestbook-window") {
-      loadGuestbook();
-    }
-
-    if (windowId === "thoughts-window") {
-      renderThoughts();
-    }
-  });
-});
-
-
-/* =========================
-   CLOSE BUTTONS
-========================= */
-
-const closeButtons = document.querySelectorAll(".close-button");
-
-closeButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const windowElement = button.closest(".window");
-
-    if (!windowElement) {
-      return;
-    }
-
-    if (windowElement.id === "welcome-window") {
-      windowElement.style.display = "none";
-      return;
-    }
-
-    windowElement.classList.remove("active");
-    updateTaskbar();
-  });
-});
-
-
-/* =========================
-   WINDOW FOCUS
-========================= */
-
-document.querySelectorAll(".window").forEach((windowElement) => {
-  windowElement.addEventListener("mousedown", () => {
-    bringToFront(windowElement);
-  });
-});
-
-
-/* =========================
-   WINDOW DRAGGING
-========================= */
-
-document.querySelectorAll(".window").forEach((windowElement) => {
-  const titleBar = windowElement.querySelector(".title-bar");
-
-  if (!titleBar) {
-    return;
-  }
-
-  let isDragging = false;
-  let offsetX = 0;
-  let offsetY = 0;
-
-  titleBar.addEventListener("mousedown", (event) => {
-    if (event.target.closest(".close-button")) {
-      return;
-    }
-
-    isDragging = true;
-    bringToFront(windowElement);
-
-    const rect = windowElement.getBoundingClientRect();
-
-    offsetX = event.clientX - rect.left;
-    offsetY = event.clientY - rect.top;
-
-    windowElement.style.transform = "none";
-    windowElement.style.left = `${rect.left}px`;
-    windowElement.style.top = `${rect.top}px`;
-
-    event.preventDefault();
-  });
-
-  document.addEventListener("mousemove", (event) => {
-    if (!isDragging) {
-      return;
-    }
-
-    let newLeft = event.clientX - offsetX;
-    let newTop = event.clientY - offsetY;
-
-    const maxLeft = window.innerWidth - 40;
-    const maxTop = window.innerHeight - 45;
-
-    newLeft = Math.max(0, Math.min(newLeft, maxLeft));
-    newTop = Math.max(0, Math.min(newTop, maxTop));
-
-    windowElement.style.left = `${newLeft}px`;
-    windowElement.style.top = `${newTop}px`;
-  });
-
-  document.addEventListener("mouseup", () => {
-    isDragging = false;
-  });
-});
-
-
-/* =========================
-   THOUGHTS
-========================= */
-
-function renderThoughts() {
-  if (!thoughtsList) {
-    return;
-  }
-
-  thoughtsList.innerHTML = "";
-
-  if (!thoughts || thoughts.length === 0) {
-    const emptyMessage = document.createElement("div");
-
-    emptyMessage.className = "no-thoughts";
-    emptyMessage.textContent = "No thoughts here yet.";
-
-    thoughtsList.appendChild(emptyMessage);
-
-    return;
-  }
-
-  thoughts.forEach((thought) => {
-    const thoughtElement = document.createElement("div");
-    thoughtElement.className = "thought";
-
-    const dateElement = document.createElement("div");
-    dateElement.className = "thought-date";
-    dateElement.textContent = thought.date;
-
-    const textElement = document.createElement("div");
-    textElement.className = "thought-text";
-    textElement.textContent = thought.text;
-
-    thoughtElement.appendChild(dateElement);
-    thoughtElement.appendChild(textElement);
-
-    thoughtsList.appendChild(thoughtElement);
-  });
-}
-
-
-/* =========================
-   BADGE EMBED COPY
-========================= */
-
-if (copyBadgeButton && badgeEmbedCode && copyBadgeStatus) {
-  copyBadgeButton.addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(badgeEmbedCode.value);
-
-      copyBadgeStatus.textContent = "Copied!";
-      copyBadgeStatus.className = "copy-success";
-
-      setTimeout(() => {
-        copyBadgeStatus.textContent = "";
-      }, 2000);
-
-    } catch (error) {
-      console.error("Could not copy badge embed:", error);
-
-      badgeEmbedCode.focus();
-      badgeEmbedCode.select();
-
-      copyBadgeStatus.textContent =
-        "Copy failed — press Ctrl+C.";
-      copyBadgeStatus.className = "error";
-    }
-  });
-}
-
-
-/* =========================
-   SUPABASE
-========================= */
-
-async function supabaseRequest(endpoint, options = {}) {
-  const response = await fetch(
-    `${SUPABASE_URL}/rest/v1/${endpoint}`,
-    {
-      ...options,
-      headers: {
-        apikey: SUPABASE_KEY,
-        "Content-Type": "application/json",
-        ...(options.headers || {})
-      }
-    }
-  );
-
-  if (!response.ok) {
-    let errorMessage = "Something went wrong.";
-
-    try {
-      const error = await response.json();
-
-      errorMessage =
-        error.message ||
-        error.details ||
-        error.hint ||
-        error.code ||
-        errorMessage;
-    } catch {
-      errorMessage = `Request failed with status ${response.status}.`;
-    }
-
-    throw new Error(errorMessage);
-  }
-
-  if (response.status === 204) {
-    return null;
-  }
-
-  const text = await response.text();
-
-  if (!text) {
-    return null;
-  }
-
-  return JSON.parse(text);
-}
-
-
-/* =========================
-   GUESTBOOK
-========================= */
-
-async function loadGuestbook() {
-  if (!messagesList) {
-    return;
-  }
-
-  messagesList.textContent = "Loading messages...";
-
-  try {
-    const messages = await supabaseRequest(
-      "guestbook?select=id,name,message,created_at&order=created_at.desc"
+    alert(
+      "There was a problem signing the guestbook. Please try again."
     );
 
-    renderMessages(messages || []);
-  } catch (error) {
-    console.error("Guestbook loading error:", error);
-
-    messagesList.textContent =
-      "Unable to load Guestbook messages.";
+  } finally {
+    signButton.disabled = false;
+    signButton.textContent = "Sign Guestbook";
   }
-}
-
-
-function renderMessages(messages) {
-  if (!messagesList) {
-    return;
-  }
-
-  messagesList.innerHTML = "";
-
-  if (!messages || messages.length === 0) {
-    const emptyMessage = document.createElement("div");
-
-    emptyMessage.className = "no-messages";
-    emptyMessage.textContent =
-      "No messages yet. Be the first to sign the Guestbook!";
-
-    messagesList.appendChild(emptyMessage);
-
-    return;
-  }
-
-  messages.forEach((message) => {
-    const messageElement = document.createElement("div");
-    messageElement.className = "guestbook-message";
-
-    const header = document.createElement("div");
-    header.className = "message-header";
-
-    const name = document.createElement("span");
-    name.className = "message-name";
-    name.textContent = message.name || "Anonymous";
-
-    const date = document.createElement("span");
-    date.className = "message-date";
-    date.textContent = formatDate(message.created_at);
-
-    const text = document.createElement("div");
-    text.className = "message-text";
-    text.textContent = message.message || "";
-
-    header.appendChild(name);
-    header.appendChild(date);
-
-    messageElement.appendChild(header);
-    messageElement.appendChild(text);
-
-    messagesList.appendChild(messageElement);
-  });
-}
-
-
-function formatDate(dateString) {
-  if (!dateString) {
-    return "";
-  }
-
-  const date = new Date(dateString);
-
-  if (Number.isNaN(date.getTime())) {
-    return "";
-  }
-
-  return date.toLocaleString([], {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit"
-  });
-}
+});
 
 
 /* =========================
-   GUESTBOOK FORM
-========================= */
+   INITIALIZATION
+   ========================= */
 
-if (guestbookForm) {
-  guestbookForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
+// Show welcome window.
+welcomeWindow.style.display = "block";
+bringToFront(welcomeWindow);
 
-    if (!guestbookStatus || !signButton) {
-      return;
-    }
+// Open badges and thoughts by default.
+document
+  .getElementById("badges-window")
+  .classList.add("active");
 
-    guestbookStatus.textContent = "";
-    guestbookStatus.className = "";
+document
+  .getElementById("thoughts-window")
+  .classList.add("active");
 
-    const formData = new FormData(guestbookForm);
+bringToFront(
+  document.getElementById("badges-window")
+);
 
-    const name = String(formData.get("name") || "").trim();
-    const message = String(formData.get("message") || "").trim();
+bringToFront(
+  document.getElementById("thoughts-window")
+);
 
-    if (!name) {
-      guestbookStatus.textContent = "Please enter your name.";
-      guestbookStatus.className = "error";
-      return;
-    }
-
-    if (!message) {
-      guestbookStatus.textContent = "Please enter a message.";
-      guestbookStatus.className = "error";
-      return;
-    }
-
-    if (name.length > 30) {
-      guestbookStatus.textContent =
-        "Name must be 30 characters or less.";
-      guestbookStatus.className = "error";
-      return;
-    }
-
-    if (message.length > 300) {
-      guestbookStatus.textContent =
-        "Message must be 300 characters or less.";
-      guestbookStatus.className = "error";
-      return;
-    }
-
-    signButton.disabled = true;
-    guestbookStatus.textContent = "Signing...";
-
-    try {
-      await supabaseRequest("guestbook", {
-        method: "POST",
-
-        headers: {
-          Prefer: "return=minimal"
-        },
-
-        body: JSON.stringify({
-          name,
-          message
-        })
-      });
-
-      guestbookForm.reset();
-
-      guestbookStatus.textContent = "Message added!";
-      guestbookStatus.className = "";
-
-      loadGuestbook().catch((refreshError) => {
-        console.error(
-          "Message saved, but refresh failed:",
-          refreshError
-        );
-      });
-
-      setTimeout(() => {
-        guestbookStatus.textContent = "";
-      }, 2500);
-
-    } catch (error) {
-      console.error("Could not sign guestbook:", error);
-
-      guestbookStatus.textContent =
-        error.message || "Could not sign Guestbook.";
-
-      guestbookStatus.className = "error";
-
-    } finally {
-      signButton.disabled = false;
-    }
-  });
-}
-
-
-/* =========================
-   INITIALIZE
-========================= */
-
-/*
-  Open Welcome, Badges, and Thoughts automatically.
-*/
-
-if (welcomeWindow) {
-  welcomeWindow.style.display = "block";
-  bringToFront(welcomeWindow);
-}
-
-if (badgesWindow) {
-  badgesWindow.classList.add("active");
-  bringToFront(badgesWindow);
-}
-
-if (thoughtsWindow) {
-  thoughtsWindow.classList.add("active");
-  bringToFront(thoughtsWindow);
-  renderThoughts();
-}
-
+renderThoughts();
+renderMusic();
 updateTaskbar();
 
-
-/*
-  Load the Guestbook in the background.
-*/
-
+// Load the guestbook in the background.
 loadGuestbook().catch((error) => {
-  console.error("Initial Guestbook load failed:", error);
+  console.error(
+    "Initial Guestbook load failed:",
+    error
+  );
 });
+
+
+/* =========================
+   START BUTTON
+   ========================= */
+
+// Intentionally left non-functional for now.
+// We will add the Start menu later.
