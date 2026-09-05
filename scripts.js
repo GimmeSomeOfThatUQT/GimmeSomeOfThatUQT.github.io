@@ -1,95 +1,58 @@
-/* =========================
-   SUPABASE
-   ========================= */
-
 const SUPABASE_URL = "https://akmkoptopznnvhnlbfdd.supabase.co";
 const SUPABASE_KEY = "sb_publishable_-QaGxbzu9CzeShlSDNPGRg_MzEsZsi4";
 
-
-/* =========================
-   THOUGHTS
-   ========================= */
-
 const thoughts = [
   {
-    date: "2025-01-01",
-    text: "Welcome to my website!"
+    date: "September 5, 2026",
+    text: "astral blacksmith wont u give me a fix,. i promise i can keep it a secret. WATER. FIRE. wATER FIRE. WATER,. FUIRE. CLOUDS AND ICEEEEEEEE. i wanna add a music section nedt TBH."
   },
   {
-    date: "2025-01-05",
-    text: "I really like making little websites."
+    date: "September 5, 2026",
+    text: "so im editing this late again its already tmr which is weird because my edits yesterday were like late the 3rd so technically it was the 4th,,, and today is like late the 4th so technically the 5th but now my dates are shot so oh well."
   },
   {
-    date: "2025-01-12",
-    text: "The internet felt so much more fun when everyone had their own little corner."
+    date: "September 4, 2026",
+    text: "ok i just made a new repo for ts cuz the other one was pmoing and i didnt wanna bug fix so i copy and pasted the important stuff. but then i screwed over my entire js file cuz i accidentally put it in discord with markdown to copy paste and kept in the ''' things and had to redo ts AHHH"
   },
   {
-    date: "2025-02-01",
-    text: "I should probably update this more often."
+    date: "September 4, 2026",
+    text: "its liek 2 am but i lowk can't sleep so im just making this still. follow the twt while ur at it @pan_psych and if ur reading this and can draw PLEASE lemme get a commision dm me rn."
   },
   {
-    date: "2025-02-15",
-    text: "Thanks for visiting!"
+    date: "September 4, 2026",
+    text: "hey guys i hope u like my website i just made it today. i was planning on having it be liek my old site but i couldnt find motan to steal from and lost access to my old github... so here we are. new site. new me. feeling good"
+  },
+  {
+    date: "September 4, 2026",
+    text: "welcum to the site"
   }
 ];
 
 
 /* =========================
-   CURRENT MUSIC
-   ========================= */
+   MUSIC
+   CHANGE THESE WHENEVER
+========================= */
 
 const latestSong = {
   title: "Uqt",
   artist: "King Gizzard & the Lizard Wizard",
   album: "Alien Metal",
-  youtubeMusic:
-    "https://music.youtube.com/watch?v=MUx4plyc4Bg&si=HuDu_-cNsQfFlN1f"
+  youtubeMusic: "https://music.youtube.com/watch?v=MUx4plyc4Bg&si=HuDu_-cNsQfFlN1f"
 };
 
 
 /* =========================
-   WINDOW STATE
-   ========================= */
-
-let highestZ = 20;
-
-
-/* =========================
-   DOM ELEMENTS
-   ========================= */
-
-const welcomeWindow = document.getElementById("welcome-window");
-const welcomeOk = document.getElementById("welcome-ok");
-
-const desktopIcons = document.querySelectorAll(".desktop-icon");
-const appWindows = document.querySelectorAll(".app-window");
-const closeButtons = document.querySelectorAll(".close-button");
-
-const taskbarItems = document.getElementById("taskbar-items");
-const clock = document.getElementById("clock");
-
-const thoughtsList = document.getElementById("thoughts-list");
-
-const musicTitle = document.getElementById("music-title");
-const musicArtist = document.getElementById("music-artist");
-const musicAlbum = document.getElementById("music-album");
-const musicLink = document.getElementById("music-link");
-
-const guestbookForm = document.getElementById("guestbook-form");
-const guestName = document.getElementById("guest-name");
-const guestMessage = document.getElementById("guest-message");
-const guestbookMessages = document.getElementById("guestbook-messages");
-
-const badgeEmbedCode = document.getElementById("badge-embed-code");
-const copyBadgeButton = document.getElementById("copy-badge-button");
-const copyStatus = document.getElementById("copy-status");
-
-
-/* =========================
    CLOCK
-   ========================= */
+========================= */
 
 function updateClock() {
+  const clock = document.getElementById("clock");
+
+  if (!clock) {
+    return;
+  }
+
   const now = new Date();
 
   clock.textContent = now.toLocaleTimeString([], {
@@ -103,8 +66,10 @@ setInterval(updateClock, 1000);
 
 
 /* =========================
-   WINDOW FOCUS
-   ========================= */
+   WINDOW MANAGEMENT
+========================= */
+
+let highestZ = 20;
 
 function bringToFront(windowElement) {
   if (!windowElement) {
@@ -117,65 +82,96 @@ function bringToFront(windowElement) {
 
 
 /* =========================
+   DOM ELEMENTS
+========================= */
+
+const taskbarItems = document.getElementById("taskbar-items");
+const messagesList = document.getElementById("messages-list");
+const guestbookForm = document.getElementById("guestbook-form");
+const guestbookStatus = document.getElementById("guestbook-status");
+const signButton = document.getElementById("sign-button");
+
+const welcomeWindow = document.getElementById("welcome-window");
+const welcomeOk = document.getElementById("welcome-ok");
+
+const thoughtsList = document.getElementById("thoughts-list");
+const thoughtsWindow = document.getElementById("thoughts-window");
+
+const badgesWindow = document.getElementById("badges-window");
+const copyBadgeButton = document.getElementById("copy-badge-button");
+const badgeEmbedCode = document.getElementById("badge-embed-code");
+const copyBadgeStatus = document.getElementById("copy-badge-status");
+
+const musicWindow = document.getElementById("music-window");
+const musicTitle = document.getElementById("music-title");
+const musicArtist = document.getElementById("music-artist");
+const musicAlbum = document.getElementById("music-album");
+const musicLink = document.getElementById("music-link");
+
+
+/* =========================
    TASKBAR
-   ========================= */
+========================= */
 
 function updateTaskbar() {
+  if (!taskbarItems) {
+    return;
+  }
+
   taskbarItems.innerHTML = "";
 
-  appWindows.forEach((windowElement) => {
+  document.querySelectorAll(".app-window").forEach((windowElement) => {
     if (!windowElement.classList.contains("active")) {
       return;
     }
 
-    const titleBarText =
-      windowElement.querySelector(".title-bar span")?.textContent ||
-      "Window";
+    const title =
+      windowElement.querySelector(".title-bar span")?.textContent || "Window";
 
-    const button = document.createElement("button");
+    const taskbarButton = document.createElement("button");
 
-    button.type = "button";
-    button.className = "taskbar-item";
-    button.textContent = titleBarText;
+    taskbarButton.className = "taskbar-window";
+    taskbarButton.type = "button";
+    taskbarButton.textContent = title;
 
-    button.addEventListener("click", () => {
+    taskbarButton.addEventListener("click", () => {
+      windowElement.classList.add("active");
       bringToFront(windowElement);
     });
 
-    taskbarItems.appendChild(button);
+    taskbarItems.appendChild(taskbarButton);
   });
 }
 
 
 /* =========================
    WELCOME WINDOW
-   ========================= */
+========================= */
 
-welcomeOk.addEventListener("click", () => {
-  welcomeWindow.style.display = "none";
-});
-
-welcomeWindow.addEventListener("mousedown", () => {
-  bringToFront(welcomeWindow);
-});
+if (welcomeOk && welcomeWindow) {
+  welcomeOk.addEventListener("click", () => {
+    welcomeWindow.style.display = "none";
+  });
+}
 
 
 /* =========================
    DESKTOP ICONS
-   ========================= */
+========================= */
+
+const desktopIcons = document.querySelectorAll(".desktop-icon");
 
 desktopIcons.forEach((icon) => {
   icon.addEventListener("click", () => {
     const windowId = icon.dataset.window;
-    const windowElement = document.getElementById(windowId);
+    const appWindow = document.getElementById(windowId);
 
-    if (!windowElement) {
+    if (!appWindow) {
       return;
     }
 
-    windowElement.classList.add("active");
-    bringToFront(windowElement);
-
+    appWindow.classList.add("active");
+    bringToFront(appWindow);
     updateTaskbar();
 
     if (windowId === "guestbook-window") {
@@ -185,22 +181,18 @@ desktopIcons.forEach((icon) => {
     if (windowId === "thoughts-window") {
       renderThoughts();
     }
-
-    if (windowId === "music-window") {
-      renderMusic();
-    }
   });
 });
 
 
 /* =========================
    CLOSE BUTTONS
-   ========================= */
+========================= */
+
+const closeButtons = document.querySelectorAll(".close-button");
 
 closeButtons.forEach((button) => {
-  button.addEventListener("click", (event) => {
-    event.stopPropagation();
-
+  button.addEventListener("click", () => {
     const windowElement = button.closest(".window");
 
     if (!windowElement) {
@@ -209,18 +201,18 @@ closeButtons.forEach((button) => {
 
     if (windowElement.id === "welcome-window") {
       windowElement.style.display = "none";
-    } else {
-      windowElement.classList.remove("active");
+      return;
     }
 
+    windowElement.classList.remove("active");
     updateTaskbar();
   });
 });
 
 
 /* =========================
-   WINDOW CLICK / FOCUS
-   ========================= */
+   WINDOW FOCUS
+========================= */
 
 document.querySelectorAll(".window").forEach((windowElement) => {
   windowElement.addEventListener("mousedown", () => {
@@ -231,14 +223,18 @@ document.querySelectorAll(".window").forEach((windowElement) => {
 
 /* =========================
    WINDOW DRAGGING
-   ========================= */
+========================= */
 
-document.querySelectorAll(".window .title-bar").forEach((titleBar) => {
+document.querySelectorAll(".window").forEach((windowElement) => {
+  const titleBar = windowElement.querySelector(".title-bar");
+
+  if (!titleBar) {
+    return;
+  }
+
   let isDragging = false;
   let offsetX = 0;
   let offsetY = 0;
-
-  const windowElement = titleBar.closest(".window");
 
   titleBar.addEventListener("mousedown", (event) => {
     if (event.target.closest(".close-button")) {
@@ -246,13 +242,16 @@ document.querySelectorAll(".window .title-bar").forEach((titleBar) => {
     }
 
     isDragging = true;
-
     bringToFront(windowElement);
 
     const rect = windowElement.getBoundingClientRect();
 
     offsetX = event.clientX - rect.left;
     offsetY = event.clientY - rect.top;
+
+    windowElement.style.transform = "none";
+    windowElement.style.left = `${rect.left}px`;
+    windowElement.style.top = `${rect.top}px`;
 
     event.preventDefault();
   });
@@ -262,13 +261,17 @@ document.querySelectorAll(".window .title-bar").forEach((titleBar) => {
       return;
     }
 
-    const newLeft = event.clientX - offsetX;
-    const newTop = event.clientY - offsetY;
+    let newLeft = event.clientX - offsetX;
+    let newTop = event.clientY - offsetY;
+
+    const maxLeft = window.innerWidth - 40;
+    const maxTop = window.innerHeight - 45;
+
+    newLeft = Math.max(0, Math.min(newLeft, maxLeft));
+    newTop = Math.max(0, Math.min(newTop, maxTop));
 
     windowElement.style.left = `${newLeft}px`;
     windowElement.style.top = `${newTop}px`;
-
-    windowElement.style.transform = "none";
   });
 
   document.addEventListener("mouseup", () => {
@@ -279,7 +282,7 @@ document.querySelectorAll(".window .title-bar").forEach((titleBar) => {
 
 /* =========================
    THOUGHTS
-   ========================= */
+========================= */
 
 function renderThoughts() {
   if (!thoughtsList) {
@@ -288,9 +291,19 @@ function renderThoughts() {
 
   thoughtsList.innerHTML = "";
 
-  thoughts.forEach((thought) => {
-    const thoughtElement = document.createElement("article");
+  if (!thoughts || thoughts.length === 0) {
+    const emptyMessage = document.createElement("div");
 
+    emptyMessage.className = "no-thoughts";
+    emptyMessage.textContent = "No thoughts here yet.";
+
+    thoughtsList.appendChild(emptyMessage);
+
+    return;
+  }
+
+  thoughts.forEach((thought) => {
+    const thoughtElement = document.createElement("div");
     thoughtElement.className = "thought";
 
     const dateElement = document.createElement("div");
@@ -311,7 +324,7 @@ function renderThoughts() {
 
 /* =========================
    MUSIC
-   ========================= */
+========================= */
 
 function renderMusic() {
   if (!musicTitle || !musicArtist || !musicAlbum || !musicLink) {
@@ -319,81 +332,55 @@ function renderMusic() {
   }
 
   musicTitle.textContent = latestSong.title;
-  musicArtist.textContent = `Artist: ${latestSong.artist}`;
-  musicAlbum.textContent = `Album: ${latestSong.album}`;
+  musicArtist.textContent = latestSong.artist;
+  musicAlbum.textContent = latestSong.album;
   musicLink.href = latestSong.youtubeMusic;
 }
 
+renderMusic();
+
 
 /* =========================
-   BADGE EMBED
-   ========================= */
+   BADGE EMBED COPY
+========================= */
 
-function setupBadgeEmbed() {
-  if (!badgeEmbedCode) {
-    return;
-  }
+if (copyBadgeButton && badgeEmbedCode && copyBadgeStatus) {
+  copyBadgeButton.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(badgeEmbedCode.value);
 
-  const badgeImage =
-    document.querySelector(".badge-image");
+      copyBadgeStatus.textContent = "Copied!";
+      copyBadgeStatus.className = "copy-success";
 
-  if (!badgeImage) {
-    return;
-  }
+      setTimeout(() => {
+        copyBadgeStatus.textContent = "";
+      }, 2000);
 
-  const imageUrl = badgeImage.src;
+    } catch (error) {
+      console.error("Could not copy badge embed:", error);
 
-  badgeEmbedCode.value =
-    `<a href="https://tornadocookie.neocities.org" target="_blank" rel="noopener noreferrer">` +
-    `<img src="${imageUrl}" alt="My web badge">` +
-    `</a>`;
+      badgeEmbedCode.focus();
+      badgeEmbedCode.select();
+
+      copyBadgeStatus.textContent =
+        "Copy failed — press Ctrl+C.";
+      copyBadgeStatus.className = "error";
+    }
+  });
 }
 
-setupBadgeEmbed();
-
 
 /* =========================
-   COPY BADGE
-   ========================= */
-
-copyBadgeButton.addEventListener("click", async () => {
-  if (!badgeEmbedCode) {
-    return;
-  }
-
-  const text = badgeEmbedCode.value;
-
-  try {
-    await navigator.clipboard.writeText(text);
-
-    copyStatus.textContent = "Copied!";
-  } catch (error) {
-    badgeEmbedCode.focus();
-    badgeEmbedCode.select();
-
-    copyStatus.textContent =
-      "Select the text and press Ctrl+C to copy.";
-  }
-
-  setTimeout(() => {
-    copyStatus.textContent = "";
-  }, 3000);
-});
-
-
-/* =========================
-   SUPABASE REQUEST
-   ========================= */
+   SUPABASE
+========================= */
 
 async function supabaseRequest(endpoint, options = {}) {
   const response = await fetch(
     `${SUPABASE_URL}/rest/v1/${endpoint}`,
     {
       ...options,
-
       headers: {
         apikey: SUPABASE_KEY,
-        Authorization: `Bearer ${SUPABASE_KEY}`,
         "Content-Type": "application/json",
         ...(options.headers || {})
       }
@@ -401,108 +388,112 @@ async function supabaseRequest(endpoint, options = {}) {
   );
 
   if (!response.ok) {
-    const errorText = await response.text();
+    let errorMessage = "Something went wrong.";
 
-    throw new Error(
-      `Supabase request failed: ${response.status} ${errorText}`
-    );
+    try {
+      const error = await response.json();
+
+      errorMessage =
+        error.message ||
+        error.details ||
+        error.hint ||
+        error.code ||
+        errorMessage;
+    } catch {
+      errorMessage = `Request failed with status ${response.status}.`;
+    }
+
+    throw new Error(errorMessage);
   }
 
   if (response.status === 204) {
     return null;
   }
 
-  return response.json();
+  const text = await response.text();
+
+  if (!text) {
+    return null;
+  }
+
+  return JSON.parse(text);
 }
 
 
 /* =========================
-   LOAD GUESTBOOK
-   ========================= */
+   GUESTBOOK
+========================= */
 
 async function loadGuestbook() {
-  if (!guestbookMessages) {
+  if (!messagesList) {
     return;
   }
 
-  guestbookMessages.innerHTML =
-    "<p>Loading messages...</p>";
+  messagesList.textContent = "Loading messages...";
 
   try {
     const messages = await supabaseRequest(
-      "guestbook?select=*&order=created_at.desc"
+      "guestbook?select=id,name,message,created_at&order=created_at.desc"
     );
 
-    renderMessages(messages);
+    renderMessages(messages || []);
   } catch (error) {
-    console.error("Guestbook loading failed:", error);
+    console.error("Guestbook loading error:", error);
 
-    guestbookMessages.innerHTML =
-      "<p>Could not load guestbook messages.</p>";
+    messagesList.textContent =
+      "Unable to load Guestbook messages.";
   }
 }
 
 
-/* =========================
-   RENDER GUESTBOOK
-   ========================= */
-
 function renderMessages(messages) {
-  guestbookMessages.innerHTML = "";
+  if (!messagesList) {
+    return;
+  }
+
+  messagesList.innerHTML = "";
 
   if (!messages || messages.length === 0) {
-    guestbookMessages.innerHTML =
-      "<p>No messages yet. Be the first!</p>";
+    const emptyMessage = document.createElement("div");
+
+    emptyMessage.className = "no-messages";
+    emptyMessage.textContent =
+      "No messages yet. Be the first to sign the Guestbook!";
+
+    messagesList.appendChild(emptyMessage);
 
     return;
   }
 
   messages.forEach((message) => {
-    const messageElement =
-      document.createElement("article");
+    const messageElement = document.createElement("div");
+    messageElement.className = "guestbook-message";
 
-    messageElement.className =
-      "guestbook-message";
+    const header = document.createElement("div");
+    header.className = "message-header";
 
-    const nameElement =
-      document.createElement("div");
+    const name = document.createElement("span");
+    name.className = "message-name";
+    name.textContent = message.name || "Anonymous";
 
-    nameElement.className =
-      "message-name";
+    const date = document.createElement("span");
+    date.className = "message-date";
+    date.textContent = formatDate(message.created_at);
 
-    nameElement.textContent =
-      message.name || "Anonymous";
+    const text = document.createElement("div");
+    text.className = "message-text";
+    text.textContent = message.message || "";
 
-    const dateElement =
-      document.createElement("div");
+    header.appendChild(name);
+    header.appendChild(date);
 
-    dateElement.className =
-      "message-date";
+    messageElement.appendChild(header);
+    messageElement.appendChild(text);
 
-    dateElement.textContent =
-      formatDate(message.created_at);
-
-    const textElement =
-      document.createElement("div");
-
-    textElement.className =
-      "message-text";
-
-    textElement.textContent =
-      message.message || "";
-
-    messageElement.appendChild(nameElement);
-    messageElement.appendChild(dateElement);
-    messageElement.appendChild(textElement);
-
-    guestbookMessages.appendChild(messageElement);
+    messagesList.appendChild(messageElement);
   });
 }
 
-
-/* =========================
-   FORMAT DATE
-   ========================= */
 
 function formatDate(dateString) {
   if (!dateString) {
@@ -515,115 +506,141 @@ function formatDate(dateString) {
     return "";
   }
 
-  return date.toLocaleString();
+  return date.toLocaleString([], {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit"
+  });
 }
 
 
 /* =========================
    GUESTBOOK FORM
-   ========================= */
+========================= */
 
-guestbookForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
+if (guestbookForm) {
+  guestbookForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-  const name = guestName.value.trim();
-  const message = guestMessage.value.trim();
+    if (!guestbookStatus || !signButton) {
+      return;
+    }
 
-  if (!name || !message) {
-    alert("Please enter both your name and a message.");
-    return;
-  }
+    guestbookStatus.textContent = "";
+    guestbookStatus.className = "";
 
-  if (name.length > 40) {
-    alert("Your name is too long.");
-    return;
-  }
+    const formData = new FormData(guestbookForm);
 
-  if (message.length > 300) {
-    alert("Your message is too long.");
-    return;
-  }
+    const name = String(formData.get("name") || "").trim();
+    const message = String(formData.get("message") || "").trim();
 
-  const signButton =
-    document.getElementById("sign-button");
+    if (!name) {
+      guestbookStatus.textContent = "Please enter your name.";
+      guestbookStatus.className = "error";
+      return;
+    }
 
-  signButton.disabled = true;
-  signButton.textContent = "Signing...";
+    if (!message) {
+      guestbookStatus.textContent = "Please enter a message.";
+      guestbookStatus.className = "error";
+      return;
+    }
 
-  try {
-    await supabaseRequest("guestbook", {
-      method: "POST",
+    if (name.length > 30) {
+      guestbookStatus.textContent =
+        "Name must be 30 characters or less.";
+      guestbookStatus.className = "error";
+      return;
+    }
 
-      headers: {
-        Prefer: "return=minimal"
-      },
+    if (message.length > 300) {
+      guestbookStatus.textContent =
+        "Message must be 300 characters or less.";
+      guestbookStatus.className = "error";
+      return;
+    }
 
-      body: JSON.stringify({
-        name,
-        message
-      })
-    });
+    signButton.disabled = true;
+    guestbookStatus.textContent = "Signing...";
 
-    guestName.value = "";
-    guestMessage.value = "";
+    try {
+      await supabaseRequest("guestbook", {
+        method: "POST",
 
-    await loadGuestbook();
+        headers: {
+          Prefer: "return=minimal"
+        },
 
-  } catch (error) {
-    console.error("Guestbook submission failed:", error);
+        body: JSON.stringify({
+          name,
+          message
+        })
+      });
 
-    alert(
-      "There was a problem signing the guestbook. Please try again."
-    );
+      guestbookForm.reset();
 
-  } finally {
-    signButton.disabled = false;
-    signButton.textContent = "Sign Guestbook";
-  }
-});
+      guestbookStatus.textContent = "Message added!";
+      guestbookStatus.className = "";
+
+      loadGuestbook().catch((refreshError) => {
+        console.error(
+          "Message saved, but refresh failed:",
+          refreshError
+        );
+      });
+
+      setTimeout(() => {
+        guestbookStatus.textContent = "";
+      }, 2500);
+
+    } catch (error) {
+      console.error("Could not sign guestbook:", error);
+
+      guestbookStatus.textContent =
+        error.message || "Could not sign Guestbook.";
+
+      guestbookStatus.className = "error";
+
+    } finally {
+      signButton.disabled = false;
+    }
+  });
+}
 
 
 /* =========================
-   INITIALIZATION
-   ========================= */
+   INITIALIZE
+========================= */
 
-// Show welcome window.
-welcomeWindow.style.display = "block";
-bringToFront(welcomeWindow);
+/*
+  Open Welcome, Badges, and Thoughts automatically.
+*/
 
-// Open badges and thoughts by default.
-document
-  .getElementById("badges-window")
-  .classList.add("active");
+if (welcomeWindow) {
+  welcomeWindow.style.display = "block";
+  bringToFront(welcomeWindow);
+}
 
-document
-  .getElementById("thoughts-window")
-  .classList.add("active");
+if (badgesWindow) {
+  badgesWindow.classList.add("active");
+  bringToFront(badgesWindow);
+}
 
-bringToFront(
-  document.getElementById("badges-window")
-);
+if (thoughtsWindow) {
+  thoughtsWindow.classList.add("active");
+  bringToFront(thoughtsWindow);
+  renderThoughts();
+}
 
-bringToFront(
-  document.getElementById("thoughts-window")
-);
-
-renderThoughts();
-renderMusic();
 updateTaskbar();
 
-// Load the guestbook in the background.
+
+/*
+  Load the Guestbook in the background.
+*/
+
 loadGuestbook().catch((error) => {
-  console.error(
-    "Initial Guestbook load failed:",
-    error
-  );
+  console.error("Initial Guestbook load failed:", error);
 });
-
-
-/* =========================
-   START BUTTON
-   ========================= */
-
-// Intentionally left non-functional for now.
-// We will add the Start menu later.
