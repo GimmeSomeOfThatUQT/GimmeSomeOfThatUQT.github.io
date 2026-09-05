@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -27,6 +26,11 @@
     <div class="desktop-icon" data-window="thoughts-window">
       <div class="icon">💭</div>
       <span>Thoughts</span>
+    </div>
+
+    <div class="desktop-icon" data-window="music-window">
+      <div class="icon">🎵</div>
+      <span>Music</span>
     </div>
   </main>
 
@@ -142,7 +146,6 @@
 
       <div class="badges">
 
-        <!-- TornadoCookie badge -->
         <div class="badge">
           <a
             href="https://tornadocookie.neocities.org"
@@ -156,7 +159,6 @@
           </a>
         </div>
 
-        <!-- Your badge -->
         <div class="badge">
           <img
             src="images/elysiumorpheus-badge.png"
@@ -166,7 +168,6 @@
 
       </div>
 
-      <!-- Copyable embed -->
       <div class="badge-embed">
         <strong>embed with this pwease i need freinds :3</strong>
 
@@ -204,6 +205,44 @@
       </p>
 
       <div id="thoughts-list">Loading thoughts...</div>
+    </div>
+  </section>
+
+  <!-- MUSIC -->
+  <section class="window app-window music-window" id="music-window">
+    <div class="title-bar">
+      <span>Music</span>
+      <button class="close-button" aria-label="Close Music">×</button>
+    </div>
+
+    <div class="window-content">
+      <h2>🎵 Music</h2>
+
+      <div class="music-player">
+        <div class="music-label">most recently listened to:</div>
+
+        <div class="music-title" id="music-title">
+          Song Title
+        </div>
+
+        <div class="music-artist" id="music-artist">
+          Artist Name
+        </div>
+
+        <div class="music-album" id="music-album">
+          Album Name
+        </div>
+
+        <a
+          id="music-link"
+          class="music-link"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ▶ Listen on YouTube Music
+        </a>
+      </div>
     </div>
   </section>
 
