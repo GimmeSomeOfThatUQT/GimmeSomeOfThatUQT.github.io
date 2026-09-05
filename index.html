@@ -13,25 +13,30 @@
       <div class="icon">🗑️</div>
       <span>Trash Can</span>
     </div>
+
     <div class="desktop-icon" data-window="guestbook-window">
       <div class="icon">📖</div>
       <span>Guestbook</span>
     </div>
+
     <div class="desktop-icon" data-window="badges-window">
       <div class="icon">🏆</div>
       <span>Badges</span>
     </div>
+
     <div class="desktop-icon" data-window="thoughts-window">
       <div class="icon">💭</div>
       <span>Thoughts</span>
     </div>
   </main>
 
+  <!-- WELCOME -->
   <section class="window welcome-window" id="welcome-window">
     <div class="title-bar">
       <span>Welcome</span>
       <button class="close-button" aria-label="Close Welcome window">×</button>
     </div>
+
     <div class="window-content welcome-content">
       <div class="welcome-logo">
         <div class="logo-grid">
@@ -41,23 +46,30 @@
           <span></span>
         </div>
       </div>
+
       <div class="welcome-text">
         <h1>Welcome to Windows 94!</h1>
         <p>Welcome to the desktop of the future*</p>
-        <p>Explore the desktop, sign the Guestbook, collect badges, and see what else is hiding around here.</p>
+        <p>
+          Explore the desktop, sign the Guestbook, collect badges,
+          and see what else is hiding around here.
+        </p>
         <small>* The future as imagined in 1994.</small>
       </div>
     </div>
+
     <div class="window-buttons">
       <button class="win-button primary-button" id="welcome-ok">OK</button>
     </div>
   </section>
 
+  <!-- TRASH -->
   <section class="window app-window" id="trash-window">
     <div class="title-bar">
       <span>Trash Can</span>
       <button class="close-button" aria-label="Close Trash Can">×</button>
     </div>
+
     <div class="window-content">
       <div class="empty-trash">
         <div class="big-icon">🗑️</div>
@@ -66,69 +78,147 @@
     </div>
   </section>
 
+  <!-- GUESTBOOK -->
   <section class="window app-window guestbook-window" id="guestbook-window">
     <div class="title-bar">
       <span>Guestbook</span>
       <button class="close-button" aria-label="Close Guestbook">×</button>
     </div>
+
     <div class="window-content">
       <h2>📖 Guestbook</h2>
       <p>Leave a message for the next person who visits!</p>
+
       <form id="guestbook-form">
         <label for="guest-name">Your name:</label>
-        <input id="guest-name" name="name" type="text" maxlength="30" required autocomplete="off">
+        <input
+          id="guest-name"
+          name="name"
+          type="text"
+          maxlength="30"
+          required
+          autocomplete="off"
+        >
+
         <label for="guest-message">Your message:</label>
-        <textarea id="guest-message" name="message" maxlength="300" required placeholder="Hello from the internet!"></textarea>
+        <textarea
+          id="guest-message"
+          name="message"
+          maxlength="300"
+          required
+          placeholder="Hello from the internet!"
+        ></textarea>
+
         <div class="guestbook-form-footer">
-          <button type="submit" class="win-button" id="sign-button">Sign Guestbook</button>
+          <button type="submit" class="win-button" id="sign-button">
+            Sign Guestbook
+          </button>
+
           <span id="guestbook-status"></span>
         </div>
       </form>
+
       <hr>
+
       <div class="guestbook-messages">
-        <div class="guestbook-heading"><strong>Messages from visitors</strong></div>
+        <div class="guestbook-heading">
+          <strong>Messages from visitors</strong>
+        </div>
+
         <div id="messages-list">Loading messages...</div>
       </div>
     </div>
   </section>
 
-  <section class="window app-window" id="badges-window">
+  <!-- BADGES -->
+  <section class="window app-window badges-window" id="badges-window">
     <div class="title-bar">
       <span>Badges</span>
       <button class="close-button" aria-label="Close Badges">×</button>
     </div>
+
     <div class="window-content">
       <h2>My Badges</h2>
+
       <div class="badges">
-        <div class="badge">🌐<span>Web Surfer</span></div>
-        <div class="badge">💾<span>Disk Explorer</span></div>
-        <div class="badge">⭐<span>Early Visitor</span></div>
+
+        <!-- TornadoCookie badge -->
+        <div class="badge">
+          <a
+            href="https://tornadocookie.neocities.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://tornadocookie.neocities.org/tornb8831.gif"
+              alt="TornadoCookie badge"
+            >
+          </a>
+        </div>
+
+        <!-- Your badge -->
+        <div class="badge">
+          <img
+            src="images/elysiumorpheus-badge.png"
+            alt="Elysium Orpheus badge"
+          >
+        </div>
+
+      </div>
+
+      <!-- Copyable embed -->
+      <div class="badge-embed">
+        <strong>My badge — copy this code:</strong>
+
+        <textarea
+          id="badge-embed-code"
+          readonly
+          spellcheck="false"
+          aria-label="Badge embed code"
+        ><a href="https://YOUR-SITE-URL-HERE"><img src="https://YOUR-SITE-URL-HERE/images/elysiumorpheus-badge.png" alt="Elysium Orpheus badge"></a></textarea>
+
+        <button
+          type="button"
+          class="win-button"
+          id="copy-badge-button"
+        >
+          Copy Embed
+        </button>
+
+        <span id="copy-badge-status"></span>
       </div>
     </div>
   </section>
 
+  <!-- THOUGHTS -->
   <section class="window app-window thoughts-window" id="thoughts-window">
     <div class="title-bar">
       <span>Thoughts</span>
       <button class="close-button" aria-label="Close Thoughts">×</button>
     </div>
+
     <div class="window-content">
       <h2>💭 Thoughts</h2>
-      <p class="thoughts-intro">A little corner of my mind on the internet.</p>
+      <p class="thoughts-intro">
+        A little corner of my mind on the internet.
+      </p>
+
       <div id="thoughts-list">Loading thoughts...</div>
     </div>
   </section>
 
+  <!-- TASKBAR -->
   <footer class="taskbar">
     <button class="start-button" id="start-button">
       <span class="windows-logo">▦</span>
       Start
     </button>
+
     <div class="taskbar-items" id="taskbar-items"></div>
+
     <div class="clock" id="clock">12:00 PM</div>
   </footer>
 
   <script src="scripts.js"></script>
-
 </body>
 </html>
