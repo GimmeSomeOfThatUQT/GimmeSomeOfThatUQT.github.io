@@ -20,6 +20,7 @@ const thoughts = [
   }
 ];
 
+
 /* =========================
    CLOCK
 ========================= */
@@ -74,6 +75,11 @@ const welcomeOk = document.getElementById("welcome-ok");
 
 const thoughtsList = document.getElementById("thoughts-list");
 const thoughtsWindow = document.getElementById("thoughts-window");
+
+const badgesWindow = document.getElementById("badges-window");
+const copyBadgeButton = document.getElementById("copy-badge-button");
+const badgeEmbedCode = document.getElementById("badge-embed-code");
+const copyBadgeStatus = document.getElementById("copy-badge-status");
 
 
 /* =========================
@@ -216,10 +222,6 @@ document.querySelectorAll(".window").forEach((windowElement) => {
     offsetX = event.clientX - rect.left;
     offsetY = event.clientY - rect.top;
 
-    /*
-      The welcome window starts with a translate transform
-      to center it. Once dragged, remove that transform.
-    */
     windowElement.style.transform = "none";
     windowElement.style.left = `${rect.left}px`;
     windowElement.style.top = `${rect.top}px`;
@@ -289,6 +291,36 @@ function renderThoughts() {
     thoughtElement.appendChild(textElement);
 
     thoughtsList.appendChild(thoughtElement);
+  });
+}
+
+
+/* =========================
+   BADGE EMBED COPY
+========================= */
+
+if (copyBadgeButton && badgeEmbedCode && copyBadgeStatus) {
+  copyBadgeButton.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(badgeEmbedCode.value);
+
+      copyBadgeStatus.textContent = "Copied!";
+      copyBadgeStatus.className = "copy-success";
+
+      setTimeout(() => {
+        copyBadgeStatus.textContent = "";
+      }, 2000);
+
+    } catch (error) {
+      console.error("Could not copy badge embed:", error);
+
+      badgeEmbedCode.focus();
+      badgeEmbedCode.select();
+
+      copyBadgeStatus.textContent =
+        "Copy failed — press Ctrl+C.";
+      copyBadgeStatus.className = "error";
+    }
   });
 }
 
@@ -459,8 +491,6 @@ if (guestbookForm) {
     const name = String(formData.get("name") || "").trim();
     const message = String(formData.get("message") || "").trim();
 
-    /* Validation */
-
     if (!name) {
       guestbookStatus.textContent = "Please enter your name.";
       guestbookStatus.className = "error";
@@ -486,8 +516,6 @@ if (guestbookForm) {
       guestbookStatus.className = "error";
       return;
     }
-
-    /* Submit */
 
     signButton.disabled = true;
     guestbookStatus.textContent = "Signing...";
@@ -542,8 +570,18 @@ if (guestbookForm) {
 ========================= */
 
 /*
-  Open the Thoughts window when the page loads.
+  Open Welcome, Badges, and Thoughts automatically.
 */
+
+if (welcomeWindow) {
+  welcomeWindow.style.display = "block";
+  bringToFront(welcomeWindow);
+}
+
+if (badgesWindow) {
+  badgesWindow.classList.add("active");
+  bringToFront(badgesWindow);
+}
 
 if (thoughtsWindow) {
   thoughtsWindow.classList.add("active");
@@ -553,9 +591,9 @@ if (thoughtsWindow) {
 
 updateTaskbar();
 
+
 /*
   Load the Guestbook in the background.
-  It can still be opened normally even if this request fails.
 */
 
 loadGuestbook().catch((error) => {
