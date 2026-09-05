@@ -2,6 +2,13 @@ const SUPABASE_URL = "https://akmkoptopznnvhnlbfdd.supabase.co";
 const SUPABASE_KEY = "sb_publishable_-QaGxbzu9CzeShlSDNPGRg_MzEsZsi4";
 
 const thoughts = [
+  { 
+    date: "September 5, 2026"
+    text: "astral blacksmith wont u give me a fix,. i promise i can keep it a secret. WATER. FIRE. wATER FIRE. WATER,. FUIRE. CLOUDS AND ICEEEEEEEE. i wanna add a music section nedt TBH."
+  {
+    date: "September 5, 2026"
+    text: "so im editing this late again its already tmr which is weird because my edits yesterday were like late the 3rd so technically it was the 4th,,, and today is like late the 4th so technically the 5th but now my dates are shot so oh well."
+  },
   {
     date: "September 4, 2026",
     text: "ok i just made a new repo for ts cuz the other one was pmoing and i didnt wanna bug fix so i copy and pasted the important stuff. but then i screwed over my entire js file cuz i accidentally put it in discord with markdown to copy paste and kept in the ''' things and had to redo ts AHHH"
