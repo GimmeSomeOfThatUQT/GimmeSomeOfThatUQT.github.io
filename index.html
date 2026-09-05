@@ -3,276 +3,265 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Windows 98 Desktop</title>
+  <title>Windows 94</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
   <main class="desktop">
-
-    <!-- Desktop Icons -->
-    <div class="desktop-icons">
-
-      <button class="desktop-icon" data-window="trash-window" type="button">
-        <span class="icon-image">🗑️</span>
-        <span>Recycle Bin</span>
-      </button>
-
-      <button class="desktop-icon" data-window="guestbook-window" type="button">
-        <span class="icon-image">📖</span>
-        <span>Guestbook</span>
-      </button>
-
-      <button class="desktop-icon" data-window="badges-window" type="button">
-        <span class="icon-image">🖼️</span>
-        <span>Badges</span>
-      </button>
-
-      <button class="desktop-icon" data-window="thoughts-window" type="button">
-        <span class="icon-image">💭</span>
-        <span>Thoughts</span>
-      </button>
-
-      <button class="desktop-icon" data-window="music-window" type="button">
-        <span class="icon-image">🎵</span>
-        <span>Music</span>
-      </button>
-
+    <div class="desktop-icon" data-window="trash-window">
+      <div class="icon">🗑️</div>
+      <span>Trash Can</span>
     </div>
 
+    <div class="desktop-icon" data-window="guestbook-window">
+      <div class="icon">📖</div>
+      <span>Guestbook</span>
+    </div>
 
-    <!-- Welcome Window -->
-    <section class="window welcome-window" id="welcome-window">
-      <div class="title-bar">
-        <span>Welcome</span>
+    <div class="desktop-icon" data-window="badges-window">
+      <div class="icon">🏆</div>
+      <span>Badges</span>
+    </div>
 
-        <button class="close-button" type="button" aria-label="Close">
-          ×
-        </button>
-      </div>
+    <div class="desktop-icon" data-window="thoughts-window">
+      <div class="icon">💭</div>
+      <span>Thoughts</span>
+    </div>
 
-      <div class="window-content welcome-content">
-        <h1>Welcome!</h1>
+    <div class="desktop-icon" data-window="music-window">
+      <div class="icon">🎵</div>
+      <span>Music</span>
+    </div>
+  </main>
 
-        <p>
-          Welcome to my little corner of the internet!
-        </p>
+  <!-- WELCOME -->
+  <section class="window welcome-window" id="welcome-window">
+    <div class="title-bar">
+      <span>Welcome</span>
+      <button class="close-button" aria-label="Close Welcome window">×</button>
+    </div>
 
-        <p>
-          Feel free to explore my desktop and click around.
-        </p>
-
-        <button id="welcome-ok" class="win-button" type="button">
-          OK
-        </button>
-      </div>
-    </section>
-
-
-    <!-- Recycle Bin -->
-    <section class="window app-window" id="trash-window">
-      <div class="title-bar">
-        <span>Recycle Bin</span>
-
-        <button class="close-button" type="button" aria-label="Close">
-          ×
-        </button>
-      </div>
-
-      <div class="window-content trash-content">
-        <div class="empty-trash">
-          <div class="large-icon">🗑️</div>
-          <p>The Recycle Bin is empty.</p>
+    <div class="window-content welcome-content">
+      <div class="welcome-logo">
+        <div class="logo-grid">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
       </div>
-    </section>
 
-
-    <!-- Guestbook -->
-    <section class="window app-window" id="guestbook-window">
-      <div class="title-bar">
-        <span>Guestbook</span>
-
-        <button class="close-button" type="button" aria-label="Close">
-          ×
-        </button>
+      <div class="welcome-text">
+        <h1>Welcome to Windows 94!</h1>
+        <p>Welcome to the desktop of the future*</p>
+        <p>
+          Explore the desktop, sign the Guestbook, collect badges, and see what else is hiding around here.
+        </p>
+        <small>* The future as imagined in 1994.</small>
       </div>
+    </div>
 
-      <div class="window-content">
+    <div class="window-buttons">
+      <button class="win-button primary-button" id="welcome-ok">OK</button>
+    </div>
+  </section>
 
-        <h2>Sign my guestbook!</h2>
+  <!-- TRASH -->
+  <section class="window app-window" id="trash-window">
+    <div class="title-bar">
+      <span>Trash Can</span>
+      <button class="close-button" aria-label="Close Trash Can">×</button>
+    </div>
 
-        <form id="guestbook-form">
+    <div class="window-content">
+      <div class="empty-trash">
+        <div class="big-icon">🗑️</div>
+        <p>The Trash Can is empty.</p>
+      </div>
+    </div>
+  </section>
 
-          <label for="guest-name">Name:</label>
-          <input
-            type="text"
-            id="guest-name"
-            name="name"
-            maxlength="40"
-            required
+  <!-- GUESTBOOK -->
+  <section class="window app-window guestbook-window" id="guestbook-window">
+    <div class="title-bar">
+      <span>Guestbook</span>
+      <button class="close-button" aria-label="Close Guestbook">×</button>
+    </div>
+
+    <div class="window-content">
+      <h2>📖 Guestbook</h2>
+      <p>Leave a message for the next person who visits!</p>
+
+      <form id="guestbook-form">
+        <label for="guest-name">Your name:</label>
+        <input
+          id="guest-name"
+          name="name"
+          type="text"
+          maxlength="30"
+          required
+          autocomplete="off"
+        >
+
+        <label for="guest-message">Your message:</label>
+        <textarea
+          id="guest-message"
+          name="message"
+          maxlength="300"
+          required
+          placeholder="Hello from the internet!"
+        ></textarea>
+
+        <div class="guestbook-form-footer">
+          <button
+            type="submit"
+            class="win-button"
+            id="sign-button"
           >
-
-          <label for="guest-message">Message:</label>
-          <textarea
-            id="guest-message"
-            name="message"
-            maxlength="300"
-            rows="5"
-            required
-          ></textarea>
-
-          <button id="sign-button" class="win-button" type="submit">
             Sign Guestbook
           </button>
 
-        </form>
+          <span id="guestbook-status"></span>
+        </div>
+      </form>
 
-        <div id="guestbook-messages">
-          <p>Loading messages...</p>
+      <hr>
+
+      <div class="guestbook-messages">
+        <div class="guestbook-heading">
+          <strong>Messages from visitors</strong>
         </div>
 
+        <div id="messages-list">Loading messages...</div>
       </div>
-    </section>
+    </div>
+  </section>
 
+  <!-- BADGES -->
+  <section class="window app-window badges-window" id="badges-window">
+    <div class="title-bar">
+      <span>Badges</span>
+      <button class="close-button" aria-label="Close Badges">×</button>
+    </div>
 
-    <!-- Badges -->
-    <section class="window app-window" id="badges-window">
-      <div class="title-bar">
-        <span>Badges</span>
+    <div class="window-content">
+      <h2>My Badges</h2>
 
-        <button class="close-button" type="button" aria-label="Close">
-          ×
-        </button>
-      </div>
-
-      <div class="window-content badges-content">
-
-        <h2>My Web Badges</h2>
-
-        <p>
-          Feel free to grab one for your own website!
-        </p>
-
-        <div class="badge-card">
-
+      <div class="badges">
+        <div class="badge">
           <a
             href="https://tornadocookie.neocities.org"
             target="_blank"
             rel="noopener noreferrer"
           >
             <img
-              src="https://i.imgur.com/placeholder.png"
-              alt="My web badge"
-              class="badge-image"
+              src="https://tornadocookie.neocities.org/tornb8831.gif"
+              alt="TornadoCookie badge"
             >
           </a>
+        </div>
 
-          <textarea
-            id="badge-embed-code"
-            readonly
-            rows="4"
-          ></textarea>
-
-          <button
-            id="copy-badge-button"
-            class="win-button"
-            type="button"
+        <div class="badge">
+          <img
+            src="images/elysiumorpheus-badge.png"
+            alt="Elysium Orpheus badge"
           >
-            Copy Embed Code
-          </button>
+        </div>
+      </div>
 
-          <p id="copy-status" class="copy-status"></p>
+      <div class="badge-embed">
+        <strong>embed with this pwease i need freinds :3</strong>
 
+        <textarea
+          id="badge-embed-code"
+          readonly
+          spellcheck="false"
+          aria-label="Badge embed code"
+        ><a href="https://YOUR-SITE-URL-HERE"><img src="https://YOUR-SITE-URL-HERE/images/elysiumorpheus-badge.png" alt="Elysium Orpheus badge"></a></textarea>
+
+        <button
+          type="button"
+          class="win-button"
+          id="copy-badge-button"
+        >
+          Copy Embed
+        </button>
+
+        <span id="copy-badge-status"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- THOUGHTS -->
+  <section class="window app-window thoughts-window" id="thoughts-window">
+    <div class="title-bar">
+      <span>Thoughts</span>
+      <button class="close-button" aria-label="Close Thoughts">×</button>
+    </div>
+
+    <div class="window-content">
+      <h2>Thoughts</h2>
+
+      <p class="thoughts-intro">
+        how it feels pondering the orb
+      </p>
+
+      <div id="thoughts-list">Loading thoughts...</div>
+    </div>
+  </section>
+
+  <!-- MUSIC -->
+  <section class="window app-window music-window" id="music-window">
+    <div class="title-bar">
+      <span>Music</span>
+      <button class="close-button" aria-label="Close Music">×</button>
+    </div>
+
+    <div class="window-content">
+      <h2>🎵 Music</h2>
+
+      <div class="music-player">
+        <div class="music-label">
+          most recently listened to:
         </div>
 
-      </div>
-    </section>
-
-
-    <!-- Thoughts -->
-    <section class="window app-window" id="thoughts-window">
-      <div class="title-bar">
-        <span>Thoughts</span>
-
-        <button class="close-button" type="button" aria-label="Close">
-          ×
-        </button>
-      </div>
-
-      <div class="window-content">
-
-        <h2>Random Thoughts</h2>
-
-        <div id="thoughts-list">
-          <p>Loading thoughts...</p>
+        <div class="music-title" id="music-title">
+          Song Title
         </div>
 
-      </div>
-    </section>
+        <div class="music-artist" id="music-artist">
+          Artist Name
+        </div>
 
-
-    <!-- Music -->
-    <section class="window app-window" id="music-window">
-      <div class="title-bar">
-        <span>Music</span>
-
-        <button class="close-button" type="button" aria-label="Close">
-          ×
-        </button>
-      </div>
-
-      <div class="window-content music-content">
-
-        <h2>Currently Listening To</h2>
-
-        <div class="music-info">
-
-          <div class="music-icon">🎵</div>
-
-          <div>
-            <h3 id="music-title">Loading...</h3>
-            <p id="music-artist"></p>
-            <p id="music-album"></p>
-          </div>
-
+        <div class="music-album" id="music-album">
+          Album Name
         </div>
 
         <a
           id="music-link"
-          class="win-button music-link"
+          class="music-link"
           href="#"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Listen on YouTube Music
+          ▶ Listen on YouTube Music
         </a>
-
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
-
-
-  <!-- Taskbar -->
+  <!-- TASKBAR -->
   <footer class="taskbar">
-
-    <button id="start-button" class="start-button" type="button">
+    <button class="start-button" id="start-button">
       <span class="windows-logo">▦</span>
       Start
     </button>
 
-    <div id="taskbar-items" class="taskbar-items"></div>
+    <div class="taskbar-items" id="taskbar-items"></div>
 
-    <div id="clock" class="clock">
-      12:00 PM
-    </div>
-
+    <div class="clock" id="clock">12:00 PM</div>
   </footer>
 
-
   <script src="scripts.js"></script>
-
 </body>
 </html>
