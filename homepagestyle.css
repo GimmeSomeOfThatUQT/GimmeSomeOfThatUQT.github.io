@@ -40,4 +40,14 @@ body, main {
 }
 body {
   background-color: #B74214;
+  margin: 0;
+  padding: 0;
+}
+
+.site-container {
+  width: 90%:
+  max-width: 900px;
+  margin: 0; auto;
+
+  padding: 20px;
 }
