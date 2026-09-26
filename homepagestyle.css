@@ -21,7 +21,7 @@ h3 a {
   color: #C3CBBE;
   text-align: center;
   text-decoration: none;
-  margin-right: 20px;
+  margin: 0 10px;
 
   image-rendering: pixelated;
   font-smooth: never;
@@ -45,9 +45,9 @@ body {
 }
 
 .site-container {
-  width: 90%:
+  width: 90%;
   max-width: 900px;
-  margin: 0; auto;
+  margin: 0 auto;
 
   padding: 20px;
 }
