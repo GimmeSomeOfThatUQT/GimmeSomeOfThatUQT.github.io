@@ -8,7 +8,20 @@
   src: url('basiic.ttf') format('truetype');
 }
 
+h1, header {
+  font-family: 'Glass', sans-serif;
+  font-size: 60px;
+  text-align: center;
+}
 
+body, main {
+  font-family: 'basiic', sans-serif;
+  font-size: 16px;
+
+  image-rendering: pixelated;
+  font-smooth: never;
+  -webkit-font-smoothing: none;
+}
 body {
   background-color: #B74214;
 }
