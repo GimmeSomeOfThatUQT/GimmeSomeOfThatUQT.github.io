@@ -1,3 +1,14 @@
+@font-face {
+  font-family: 'Glass';
+  src: url('Glass.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'basiic';
+  src: url('basiic.ttf') format('truetype');
+}
+
+
 body {
   background-color: #B74214;
 }
