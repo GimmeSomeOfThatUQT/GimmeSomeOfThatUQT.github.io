@@ -8,14 +8,14 @@
   src: url('basiic.ttf') format('truetype');
 }
 
-h1, header {
+h1 {
   font-family: 'Glass', sans-serif;
   font-size: 60px;
   text-align: center;
   color: #3F0E00;
 }
 
-body, main {
+body, main, h3 {
   font-family: 'basiic', sans-serif;
   font-size: 16px;
   color: #8C1C04;
