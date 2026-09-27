@@ -68,7 +68,16 @@ body {
 
 .middle-col {
   flex: 0 0 35%;
+}
+
+.middle-col h2 {
+  text-align: center;
+}
+
+.middle-col ul {
   text-align: left;
+  padding-left: 20px;
+  margin: 0;
 }
 
 .right-col {
