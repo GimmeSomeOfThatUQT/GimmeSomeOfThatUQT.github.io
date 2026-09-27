@@ -13,6 +13,7 @@ h1 {
   font-size: 60px;
   text-align: center;
   color: #3F0E00;
+  max-width: 100%;
 }
 
 h3 a {
@@ -82,4 +83,33 @@ body {
 
 .right-col {
     flex: 0 0 25%;
+}
+
+@media (max-width: 700px) {
+  h1 {
+    font-size: 40px;
+    overflow-wrap: break-word;
+  }
+
+  .site-container {
+    width: auto;
+    padding: 15px;
+  }
+
+  .columns-row {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .left-col,
+  .middle-col,
+  .right-col {
+    flex: none;
+    width: 100%;
+  }
+
+  .middle-col ul {
+    text-align: left;
+    padding-left: 20px;
+  }
 }
