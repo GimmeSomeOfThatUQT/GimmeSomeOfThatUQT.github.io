@@ -68,6 +68,7 @@ body {
 
 .middle-col {
   flex: 0 0 35%;
+  text-align: left;
 }
 
 .right-col {
