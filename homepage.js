@@ -16,3 +16,20 @@ fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&c
         document.getElementById('weather-card').innerHTML =
             `<strong>Weather:</strong> Unavailable`;
     });
+
+function updateTime() {
+    const now = new Date();
+
+    const time = now.toLocaleTimeString('en-US', {
+        timeZone: 'America/Toronto',
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit'
+    });
+
+    document.getElementById('time-card').innerHTML =
+        `<strong>Time:</strong> ${time} EST`;
+}
+
+updateTime();
+setInterval(updateTime, 1000);
