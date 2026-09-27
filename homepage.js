@@ -24,11 +24,12 @@ function updateTime() {
         timeZone: 'America/Toronto',
         hour: 'numeric',
         minute: '2-digit',
-        second: '2-digit'
+        second: '2-digit',
+        timeZoneName: 'short'
     });
 
     document.getElementById('time-card').innerHTML =
-        `<strong>Time:</strong> ${time} EST`;
+        `<strong>Time:</strong> ${time}`;
 }
 
 updateTime();
