@@ -115,3 +115,35 @@ img {
   }
 }
 
+
+.socials {
+  list-style: none;
+  padding: 0;
+  margin: 20px auto;
+  width: fit-content;
+  transform: translateX(-20px);
+  text-align: left;
+}
+
+.socials li {
+  margin: 10px 0;
+}
+
+.socials li::before {
+  content: "•";
+  margin-right: 10px;
+}
+
+.socials a {
+  color: purple;
+  text-decoration: none;
+}
+
+.socials a:visited {
+  color: purple;
+}
+
+.socials a:hover {
+  color: purple;
+  text-decoration: none;
+}
