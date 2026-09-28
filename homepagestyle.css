@@ -2,6 +2,16 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'basiic';
+  src: url('basiic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Glass';
+  src: url('Glass.woff2') format('woff2');
+}
+
 body {
   background-color: #94D0FF;
   background-image:
@@ -22,6 +32,10 @@ body {
   image-rendering: pixelated;
   font-smooth: never;
   -webkit-font-smoothing: none;
+}
+
+h1 {
+  font-family: 'Glass', sans-serif;
 }
 
 h3 a {
