@@ -37,11 +37,11 @@ h3 a {
 }
 
 h3 a:visited {
-  color: white;
+  color: purple;
 }
 
 h3 a:hover {
-  color: white;
+  color: purple;
 }
 
 img {
