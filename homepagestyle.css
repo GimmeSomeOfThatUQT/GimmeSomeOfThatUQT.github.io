@@ -13,14 +13,7 @@
 }
 
 body {
-  background-color: #94D0FF;
-  background-image:
-    linear-gradient(45deg, #8795E8 25%, transparent 25%),
-    linear-gradient(-45deg, #8795E8 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #8795E8 75%),
-    linear-gradient(-45deg, transparent 75%, #8795E8 75%);
-  background-size: 40px 40px;
-  background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+  background-color: white;
 
   margin: 0;
   padding: 0;
@@ -39,7 +32,7 @@ h1 {
 }
 
 h3 a {
-  color: white;
+  color: purple;
   text-decoration: none;
 }
 
