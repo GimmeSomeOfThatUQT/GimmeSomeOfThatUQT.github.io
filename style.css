@@ -120,8 +120,6 @@ img {
   list-style: none;
   padding: 0;
   margin: 20px auto;
-  width: fit-content;
-  transform: translateX(-20px);
   text-align: left;
 }
 
