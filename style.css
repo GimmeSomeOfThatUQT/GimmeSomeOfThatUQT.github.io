@@ -4,12 +4,12 @@
 
 @font-face {
   font-family: 'basiic';
-  src: url('basiic.woff2') format('woff2');
+  src: url('fonts/basiic.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Glass';
-  src: url('Glass.woff2') format('woff2');
+  src: url('fonts/Glass.woff2') format('woff2');
 }
 
 body {
@@ -115,12 +115,10 @@ img {
   }
 }
 
-
 .socials {
   list-style: none;
   padding: 0;
-  margin: 20px auto;
-  text-align: left;
+  margin: 20px 0;
 }
 
 .socials-page h2 {
