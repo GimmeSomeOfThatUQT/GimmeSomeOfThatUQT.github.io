@@ -156,7 +156,7 @@ img {
   text-align: left;
 }
 .info-box {
-    background-color: rgba(180, 195, 180, 0.8);
+    background-color: rgba(138, 154, 91, 0.8);
     border-radius: 4px;
 
     width: 85%;
@@ -164,8 +164,7 @@ img {
     margin: 20px auto;
     padding: 5px;
 
-    text-align: left;
-    color: #242424;
+    color: black;
     font-size: 15px;
     line-height: 1.5;
 }
