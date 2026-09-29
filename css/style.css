@@ -32,16 +32,16 @@ h1 {
 }
 
 h3 a {
-  color: purple;
+  color: #8A9A5B;
   text-decoration: none;
 }
 
 h3 a:visited {
-  color: purple;
+  color: #8A9A5B;
 }
 
 h3 a:hover {
-  color: purple;
+  color: #8A9A5B;
 }
 
 img {
