@@ -31,17 +31,18 @@ h1 {
   font-family: 'Glass', sans-serif;
 }
 
-h3 a {
-  color: #8A9A5B;
+a {
+  color: black;
   text-decoration: none;
 }
 
-h3 a:visited {
-  color: #8A9A5B;
+a:visited {
+  color: black;
 }
 
-h3 a:hover {
-  color: #8A9A5B;
+a:hover {
+  color: black;
+  text-decoration: none;
 }
 
 img {
@@ -132,20 +133,6 @@ img {
 .socials li::before {
   content: "•";
   margin-right: 10px;
-}
-
-.socials a {
-  color: purple;
-  text-decoration: none;
-}
-
-.socials a:visited {
-  color: purple;
-}
-
-.socials a:hover {
-  color: purple;
-  text-decoration: none;
 }
 
 .socials-page {
