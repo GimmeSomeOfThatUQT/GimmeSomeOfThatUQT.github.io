@@ -164,3 +164,28 @@ img {
 .info-box p:last-child {
     margin-bottom: 0;
 }
+
+.media-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.media-dropdown {
+    display: none;
+    position: absolute;
+
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    text-align: center;
+}
+
+.media-dropdown a {
+    display: block;
+    margin: 5px 0;
+}
+
+.media-menu:hover .media-dropdown {
+    display: block;
+}
