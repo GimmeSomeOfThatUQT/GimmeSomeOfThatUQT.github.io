@@ -12,6 +12,10 @@
   src: url('../fonts/Glass.woff2') format('woff2');
 }
 
+header {
+    margin-bottom: 40px;
+}
+
 body {
   background-color: white;
 
@@ -167,17 +171,17 @@ img {
 
 .media-menu {
     position: relative;
-    display: inline-block;
+    display: inline;
 }
 
 .media-dropdown {
     display: none;
     position: absolute;
 
-    top: 25px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 100%;
+    left: 0;
 
+    width: 100%;
     text-align: center;
 }
 
