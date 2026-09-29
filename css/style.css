@@ -155,3 +155,19 @@ img {
   padding: 20px;
   text-align: left;
 }
+
+.info-box {
+    background-color: rgba(138, 154, 91, 0.8);
+    border-radius: 4px;
+
+    padding: 5px;
+    width: 100%;
+}
+
+.info-box p {
+    margin: 0 0 20px;
+}
+
+.info-box p:last-child {
+    margin-bottom: 0;
+}
